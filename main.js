@@ -211,6 +211,7 @@ function initPageTransitions(){
       const dest = this.dataset.label || 'Loading';
       if(label) label.textContent = dest;
       sessionStorage.setItem('page_transitioning', 'true');
+      wipe.classList.add('active');
       const tl = gsap.timeline({ onComplete: ()=>{ window.location.href = href; } });
       tl.set(wipe, { transform:'translateY(100%)' })
         .to(wipe, { transform:'translateY(0%)', duration: reduceMotion?0.01:0.55, ease:'power4.inOut' })
@@ -301,16 +302,20 @@ function runArrivalWipe(){
   sessionStorage.removeItem('page_transitioning');
 
   if(isTransitioning){
-    // Scarlet curtain is already at translateY(0%) covering the page seamlessly from the prior page
+    wipe.classList.add('active');
+    gsap.set(wipe, { transform: 'translateY(0%)' });
     gsap.to(wipe, {
       transform: 'translateY(-100%)',
       duration: reduceMotion ? 0.01 : 0.6,
       ease: 'power4.inOut',
-      delay: 0.05
+      delay: 0.05,
+      onComplete: ()=>{
+        wipe.classList.remove('active');
+      }
     });
   } else {
-    // Fresh/direct reload visit: dismiss immediately without interrupting the user
-    gsap.set(wipe, { transform: 'translateY(-100%)' });
+    // Normal direct visit / reload: keep completely removed
+    wipe.classList.remove('active');
   }
 }
 
