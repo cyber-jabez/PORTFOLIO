@@ -87,6 +87,7 @@ function initScrollReveals(){
 
 /* ============ Follow-scroll SVG line (draws in as you scroll the whole page) ============ */
 function initLinePath(){
+  if(window.innerWidth <= 1000) return; // hidden on mobile
   const path = document.getElementById('scrollLinePath');
   if(!path) return;
   const len = path.getTotalLength();
