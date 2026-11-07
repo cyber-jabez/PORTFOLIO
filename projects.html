@@ -19,6 +19,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="canonical" href="index.html#projects">
+<meta http-equiv="refresh" content="0; url=index.html#projects">
+<script>window.location.replace("index.html#projects");</script>
 </head>
 <body>
 
@@ -60,39 +63,109 @@
 <section class="page-hero">
   <div class="kicker" data-split-lines>03 — Built</div>
   <h1 data-split-lines>Selected<br>projects</h1>
-  <p>Two tools built around the same question: how do you separate a real threat from noise, faster and with less manual review.</p>
+  <p>Engineered security tools and detection systems spanning machine learning anomaly detection, URL heuristics, video computer vision, and cryptographic forensics.</p>
 </section>
 
 <section id="projects" style="padding-top:0;">
+  <!-- Project 01: RazorShield AI -->
   <div class="case reveal" tabindex="0" role="button"
-       data-title="Phishing Link Detector"
-       data-body="Built a Python-based tool that evaluates URLs for phishing indicators using a combination of API lookups and heuristic checks — designed to flag suspicious links automatically and reduce manual review effort in identifying malicious URLs. The heuristic layer cross-checks domain age, redirect chains, and known blocklists before returning a risk score."
-       data-stack="Python,Heuristics,API Integration,Risk Scoring">
+       data-title="RazorShield AI — Fraud &amp; Risk Intelligence Engine"
+       data-url="https://github.com/cyber-jabez/razorshield-ai"
+       data-body="Engineered for the Razorpay AI Buildathon, RazorShield AI combines multi-tiered machine learning risk scoring, automated telemetry, and real-time transaction fraud detection. Architected with high-concurrency ingestion and heuristic rule engines to intercept unauthorized transactions and flag anomalous merchant behavior."
+       data-stack="TypeScript, Python, Machine Learning, Risk Scoring, Razorpay API, Fraud Telemetry">
     <div>
-      <div class="case-index">Project 01</div>
-      <div class="case-title">Phishing Link Detector</div>
-      <p class="case-body">Built a Python-based tool that evaluates URLs for phishing indicators using a combination of API lookups and heuristic checks — designed to flag suspicious links automatically and reduce manual review effort.</p>
+      <div class="case-index">Project 01 // AI &amp; Financial Security</div>
+      <div class="case-title">RazorShield AI — Fraud &amp; Risk Engine</div>
+      <p class="case-body">Real-time transaction fraud evaluation pipeline combining multi-tier ML anomaly models, automated risk scoring, and merchant telemetry triage.</p>
+      <div class="case-actions">
+        <a href="https://github.com/cyber-jabez/razorshield-ai" target="_blank" rel="noopener noreferrer" class="case-link" onclick="event.stopPropagation();">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub ↗
+        </a>
+      </div>
       <div class="case-stack">
+        <span class="stack-chip">TypeScript</span>
         <span class="stack-chip">Python</span>
-        <span class="stack-chip">Heuristics</span>
-        <span class="stack-chip">API Integration</span>
+        <span class="stack-chip">ML Risk Scoring</span>
+        <span class="stack-chip">Fraud Telemetry</span>
       </div>
     </div>
     <div class="case-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
   </div>
 
+  <!-- Project 02: Phishing-Guard -->
   <div class="case reveal" tabindex="0" role="button"
-       data-title="Sandbox Automation with VirusTotal + AI"
-       data-body="Developed an automated testing pipeline integrating the VirusTotal API to scan files and links for malicious activity, with AI-assisted analysis layered in to interpret scan results and support faster, more informed threat assessment. The pipeline batches submissions, polls scan status, and summarizes verdicts for quicker triage."
-       data-stack="VirusTotal API,Automation,AI-Assisted Analysis,Python">
+       data-title="Phishing-Guard Link Evaluator"
+       data-url="https://github.com/cyber-jabez/Phishing-Guard"
+       data-body="A lightweight, high-accuracy Python security utility engineered to intercept and assess deceptive URLs in real time. Features multi-layered heuristics analyzing lexical structures, domain age, redirect chains, and reputation blacklists to shield end users from credential harvesting."
+       data-stack="Python, Heuristics, Threat Intel, Network Security, URL Analysis">
     <div>
-      <div class="case-index">Project 02</div>
-      <div class="case-title">Sandbox Automation — VirusTotal + AI</div>
-      <p class="case-body">Developed an automated testing pipeline integrating the VirusTotal API to scan files and links for malicious activity, with AI-assisted analysis to support faster, more informed threat assessment.</p>
+      <div class="case-index">Project 02 // Threat Intelligence</div>
+      <div class="case-title">Phishing-Guard Link Evaluator</div>
+      <p class="case-body">Heuristic threat engine evaluating suspicious links, redirect patterns, domain metrics, and known malicious blacklists to automate URL risk classification.</p>
+      <div class="case-actions">
+        <a href="https://github.com/cyber-jabez/Phishing-Guard" target="_blank" rel="noopener noreferrer" class="case-link" onclick="event.stopPropagation();">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub ↗
+        </a>
+      </div>
       <div class="case-stack">
-        <span class="stack-chip">VirusTotal API</span>
-        <span class="stack-chip">Automation</span>
-        <span class="stack-chip">AI-Assisted Analysis</span>
+        <span class="stack-chip">Python</span>
+        <span class="stack-chip">Threat Intel</span>
+        <span class="stack-chip">Heuristics</span>
+        <span class="stack-chip">Reputation DB</span>
+      </div>
+    </div>
+    <div class="case-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+  </div>
+
+  <!-- Project 03: HNX Autonomous Vision -->
+  <div class="case reveal" tabindex="0" role="button"
+       data-title="HNX-INT-128 Autonomous Vision &amp; Behavior Understanding"
+       data-url="https://github.com/cyber-jabez/HNX-INT-128-Autonomous-Vision-Behaviour-Understanding-"
+       data-body="Autonomous computer vision pipeline for real-time video stream behavioral understanding, anomaly detection, and spatial telemetry. Employs deep learning object tracking, temporal sequence parsing, and perimeter intrusion surveillance heuristics."
+       data-stack="Python, Computer Vision, Deep Learning, Video Analytics, Anomaly Detection">
+    <div>
+      <div class="case-index">Project 03 // Computer Vision &amp; AI</div>
+      <div class="case-title">HNX-INT-128 Autonomous Vision System</div>
+      <p class="case-body">Deep vision anomaly detector processing continuous video telemetry to classify anomalous human movement, perimeter transgressions, and spatial events.</p>
+      <div class="case-actions">
+        <a href="https://github.com/cyber-jabez/HNX-INT-128-Autonomous-Vision-Behaviour-Understanding-" target="_blank" rel="noopener noreferrer" class="case-link" onclick="event.stopPropagation();">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub ↗
+        </a>
+      </div>
+      <div class="case-stack">
+        <span class="stack-chip">Computer Vision</span>
+        <span class="stack-chip">Deep Learning</span>
+        <span class="stack-chip">Video Analytics</span>
+        <span class="stack-chip">Python</span>
+      </div>
+    </div>
+    <div class="case-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
+  </div>
+
+  <!-- Project 04: Simple Password Cracker -->
+  <div class="case reveal" tabindex="0" role="button"
+       data-title="Password Cracker &amp; Entropy Forensics Tool"
+       data-url="https://github.com/cyber-jabez/Simple-password-cracker"
+       data-body="Python utility built for credential robustness validation and security education. Performs multi-threaded dictionary comparisons, hash matching (MD5, SHA-1, SHA-256), and Shannon entropy calculation to benchmark password resistance against brute-force attacks."
+       data-stack="Python, Cryptography, Entropy Analysis, Wordlists, Hashing">
+    <div>
+      <div class="case-index">Project 04 // Cryptographic Utilities</div>
+      <div class="case-title">Password Cracker &amp; Entropy Forensics</div>
+      <p class="case-body">Cryptographic analysis script testing wordlist resilience, calculating bitwise Shannon entropy, and demonstrating credential exposure vulnerability.</p>
+      <div class="case-actions">
+        <a href="https://github.com/cyber-jabez/Simple-password-cracker" target="_blank" rel="noopener noreferrer" class="case-link" onclick="event.stopPropagation();">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub ↗
+        </a>
+      </div>
+      <div class="case-stack">
+        <span class="stack-chip">Python</span>
+        <span class="stack-chip">Entropy Analysis</span>
+        <span class="stack-chip">SHA-256 Hashes</span>
+        <span class="stack-chip">Wordlists</span>
       </div>
     </div>
     <div class="case-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></div>
@@ -148,11 +221,18 @@
     <h3 id="modalTitle"></h3>
     <p id="modalBody"></p>
     <div id="modalStack"></div>
+    <div id="modalActions">
+      <a id="modalGithubLink" href="#" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>View on GitHub ↗</span>
+      </a>
+    </div>
   </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="blurText.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

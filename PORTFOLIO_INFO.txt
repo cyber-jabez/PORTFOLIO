@@ -1,0 +1,214 @@
+# Comprehensive Portfolio & Resume Data — Jabez Gabrielraj E
+
+---
+
+## 1. Personal & Contact Information
+
+- **Full Name**: Jabez Gabrielraj E
+- **Initials / Monogram**: JGE
+- **Title / Role**: Cybersecurity Analyst & Infrastructure
+- **Headline / Tagline**: Cybersecurity student building toward blue-team and cloud security work — Linux systems, threat scanning, and infrastructure hardening.
+- **Location**: Coimbatore, Tamil Nadu, India
+- **Email**: [2008zpm@gmail.com](mailto:2008zpm@gmail.com)
+- **Phone**: [+91 96778 55102](tel:+919677855102)
+- **LinkedIn Profile**: [linkedin.com/in/jabez-gabrielraj-e](https://www.linkedin.com/in/jabez-gabrielraj-e/)
+- **GitHub Profile**: [github.com/cyber-jabez](https://github.com/cyber-jabez)
+- **Resume File**: [Jabez_Gabrielraj_Resume.pdf](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/Jabez_Gabrielraj_Resume.pdf)
+- **Availability / Note**: Open to internships, campus roles, and security-adjacent collaborations.
+
+---
+
+## 2. Professional Summary & Objective
+
+- Second-year **Computer Science (Cybersecurity)** student at **Karunya Institute of Technology and Sciences** who recently completed a cybersecurity analyst internship at **ZyrOps LLP**.
+- Hands-on experience in **Linux administration**, **cloud infrastructure**, **security tooling**, **competitive CTF play**, and **independent security engineering**.
+- Strong focus on building technical depth toward blue-team security operations, threat scanning, SOC analysis, and cloud hardening.
+
+---
+
+## 3. Snapshot Metrics & Key Stats
+
+- **Academic Standing**: Second-year B.Tech Student
+- **CGPA**: `8.38 / 10.0`
+- **CTF Placements**: `02` (Inter-College Runner-up & National Top 5)
+- **Certifications**: `08 Completed + 1 In Progress` (`8+1`)
+- **Graduating Year**: `2029`
+
+---
+
+## 4. Education Record
+
+### [Karunya Institute of Technology and Sciences](https://www.karunya.edu/)
+- **Degree**: Bachelor of Technology (B.Tech)
+- **Major**: Computer Science & Engineering
+- **Specialization**: Cybersecurity
+- **Timeline**: July 2025 – June 2029
+- **Status**: In progress
+- **Academic Score**: CGPA 8.38
+
+---
+
+## 5. Work Experience & Internship
+
+### Cybersecurity Analyst Intern — [ZyrOps LLP](https://zyrops.com)
+- **Timeline**: May 2026 – August 2026
+- **Status**: Completed
+- **Verification Link**: [Verify ZyrOps Internship Certificate](https://hrms.zyrops.com/verify/certificate.php?token=65a399f48f7adbf38b7c96c0ba4e219f)
+- **Responsibilities & Highlights**:
+  - Supported security analysis tasks applying practical Linux and cloud knowledge to operational workflows.
+  - Gained hands-on exposure to industry security operations, systems hardening, and threat triage alongside academic coursework.
+
+---
+
+## 6. Technical Skills & Toolkit
+
+### Technical & Systems
+- `Linux`
+- `Docker`
+- `Cloud Infrastructure`
+- `Web Development`
+- `PC Building & Hardware`
+- `Artificial Intelligence (AI)`
+- `Git`
+- `Nmap`
+
+### Programming Languages
+- `Python`
+- `C`
+- `Java`
+- `JavaScript`
+- `TypeScript`
+- `HTML`
+- `CSS`
+
+### Security Competencies
+- `Capture The Flag (CTF) Competitions`
+- `Cybersecurity Fundamentals`
+- `Malware & Threat Scanning`
+- `VirusTotal API Integration`
+- `IoT Security`
+- `URL Heuristics & Threat Intelligence`
+- `Cryptographic Forensics & Shannon Entropy Analysis`
+
+---
+
+## 7. Industry Certifications & Verification Links
+
+1. **Red Hat System Administration I (RH124 — RHA), Ver. 10**  
+   - Issuer: Red Hat  
+   - Status: Complete  
+   - Credential Link: [Verify on Credly](https://www.credly.com/badges/afcceac2-f589-4ca2-9bf5-0cb3ba3b7fcb/linked_in_profile)
+
+2. **Google Cloud Digital Leader Certification**  
+   - Issuer: Google Cloud  
+   - Status: Complete  
+   - Credential Link: [Verify on Credly](https://www.credly.com/badges/5e755207-73e6-49d5-8c20-95a45a1ed0f3/linked_in_profile)
+
+3. **Oracle Cloud Infrastructure 2025 — Certified AI Foundations Associate**  
+   - Issuer: Oracle  
+   - Status: Complete  
+   - Credential Link: [Verify on Oracle CertView](https://catalog-education.oracle.com/ords/certview/sharebadge?id=45684239B03AE978E3B84BD890F67C8E3DE9804E40775405FF3B9C9B8D4B4AF9)
+
+4. **Introduction to IoT**  
+   - Issuer: Cisco Networking Academy  
+   - Status: Complete  
+   - Credential Link: [Verify on Credly](https://www.credly.com/badges/47e7c766-e9ad-4ef6-a420-8312b2c3ee3f/linked_in_profile)
+
+5. **Intermediate Docker — Statement of Accomplishment**  
+   - Issuer: DataCamp  
+   - Status: Complete  
+   - Credential Link: [Verify on DataCamp](https://www.datacamp.com/completed/statement-of-accomplishment/course/2c2cf6e41a5a9fb6faf511891c1cc5a83acc546d)
+
+6. **Advanced Git — Statement of Accomplishment**  
+   - Issuer: DataCamp  
+   - Status: Complete  
+   - Credential Link: [Verify on DataCamp](https://www.datacamp.com/completed/statement-of-accomplishment/course/38e1006e03cbec0b59a56452671b6053ad150167)
+
+7. **Introduction to Cybersecurity**  
+   - Issuer: Cisco Networking Academy  
+   - Status: Complete & Verified
+
+8. **Cybersecurity Analyst Internship Certificate**  
+   - Issuer: ZyrOps LLP  
+   - Status: Complete  
+   - Credential Link: [Verify on ZyrOps HRMS](https://hrms.zyrops.com/verify/certificate.php?token=65a399f48f7adbf38b7c96c0ba4e219f)
+
+9. **CompTIA Security+ (SY0-701)**  
+   - Issuer: CompTIA  
+   - Status: In Progress (Candidate Active)
+
+---
+
+## 8. Projects & Security Engineering
+
+### Project 01: RazorShield AI — Fraud & Risk Intelligence Engine
+- **GitHub Repository**: [github.com/cyber-jabez/razorshield-ai](https://github.com/cyber-jabez/razorshield-ai)
+- **Domain**: AI & Financial Security / Fraud Telemetry
+- **Tech Stack**: TypeScript, Python, Machine Learning, Risk Scoring, Razorpay API, Fraud Telemetry
+- **Media Asset**: [assets/projects/razorshield.jpg](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/assets/projects/razorshield.jpg)
+- **Overview**: Real-time transaction fraud evaluation pipeline combining multi-tier ML anomaly models, automated risk scoring, and merchant telemetry triage.
+- **Deep Dive**: Engineered for the Razorpay AI Buildathon, RazorShield AI combines multi-tiered machine learning risk scoring, automated telemetry, and real-time transaction fraud detection. Architected with high-concurrency ingestion and heuristic rule engines to intercept unauthorized transactions and flag anomalous merchant behavior.
+
+---
+
+### Project 02: Phishing-Guard Link Evaluator
+- **GitHub Repository**: [github.com/cyber-jabez/Phishing-Guard](https://github.com/cyber-jabez/Phishing-Guard)
+- **Domain**: Threat Intelligence & Network Security
+- **Tech Stack**: Python, Threat Intel, Heuristics, Reputation DB, Network Security, URL Analysis
+- **Media Asset**: [assets/projects/phishing_guard.jpg](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/assets/projects/phishing_guard.jpg)
+- **Overview**: Heuristic threat engine evaluating suspicious links, redirect patterns, domain metrics, and known malicious blacklists to automate URL risk classification.
+- **Deep Dive**: A lightweight, high-accuracy Python security utility engineered to intercept and assess deceptive URLs in real time. Features multi-layered heuristics analyzing lexical structures, domain age, redirect chains, and reputation blacklists to shield end users from credential harvesting. Designed to flag suspicious links automatically, reducing manual review effort for identifying malicious URLs.
+
+---
+
+### Project 03: HNX-INT-128 Autonomous Vision System
+- **GitHub Repository**: [github.com/cyber-jabez/HNX-INT-128-Autonomous-Vision-Behaviour-Understanding-](https://github.com/cyber-jabez/HNX-INT-128-Autonomous-Vision-Behaviour-Understanding-)
+- **Domain**: Computer Vision & AI Analytics
+- **Tech Stack**: Python, Computer Vision, Deep Learning, Video Analytics, Anomaly Detection
+- **Media Asset**: [assets/projects/hnx_vision.jpg](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/assets/projects/hnx_vision.jpg)
+- **Overview**: Deep vision anomaly detector processing continuous video telemetry to classify anomalous human movement, perimeter transgressions, and spatial events.
+- **Deep Dive**: Autonomous computer vision pipeline for real-time video stream behavioral understanding, anomaly detection, and spatial telemetry. Employs deep learning object tracking, temporal sequence parsing, and perimeter intrusion surveillance heuristics.
+
+---
+
+### Project 04: Password Cracker & Entropy Forensics Tool
+- **GitHub Repository**: [github.com/cyber-jabez/Simple-password-cracker](https://github.com/cyber-jabez/Simple-password-cracker)
+- **Domain**: Cryptographic Utilities
+- **Tech Stack**: Python, Cryptography, Entropy Analysis, Wordlists, Hashing, SHA-256 Hashes
+- **Media Asset**: [assets/projects/password_cracker.jpg](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/assets/projects/password_cracker.jpg)
+- **Overview**: Cryptographic analysis script testing wordlist resilience, calculating bitwise Shannon entropy, and demonstrating credential exposure vulnerability.
+- **Deep Dive**: Python utility built for credential robustness validation and security education. Performs multi-threaded dictionary comparisons, hash matching (MD5, SHA-1, SHA-256), and Shannon entropy calculation to benchmark password resistance against brute-force attacks.
+
+---
+
+### Project 05: Sandbox Automation with VirusTotal + AI *(from Resume)*
+- **Domain**: Automated Threat Assessment
+- **Tech Stack**: Python, VirusTotal API, AI Evaluation
+- **Overview**: Automated testing pipeline integrating the VirusTotal API to scan files and links for malicious activity, incorporating AI-assisted analysis to interpret scan results and accelerate threat triage.
+
+---
+
+## 9. CTF Competitions & Field Results
+
+1. **Runner-up / 3rd Place — Capture The Flag (CTF)**
+   - **Event**: "Hashes Over Roses" National-Level CTF Competition
+   - **Host Institution**: Karunya Institute of Technology and Sciences
+   - **Details**: Team placement in a timed capture-the-flag security competition.
+
+2. **5th Place — "Battle of Binaries" National-Level CTF Event**
+   - **Event**: "Battle of Binaries"
+   - **Sponsor**: CompTIA
+   - **Host Institution**: Karunya Institute of Technology and Sciences
+   - **Details**: National-level competitive CTF covering reverse engineering, binary exploitation, web security, and cryptography.
+
+---
+
+## 10. Portfolio Web Pages & Source Links
+
+- **Home Page**: [index.html](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/index.html)
+- **Experience & Education**: [experience.html](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/experience.html)
+- **Selected Projects & CTF Results**: [projects.html](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/projects.html)
+- **Skills & Certifications**: [skills.html](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/skills.html)
+- **Contact Page**: [contact.html](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/contact.html)
+- **Global Stylesheet**: [styles.css](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/styles.css)
+- **JavaScript & Animations**: [main.js](file:///c:/Users/2005z/OneDrive/Desktop/SEM%203/Projects/PORTFOLIO-1/main.js)

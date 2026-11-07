@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-1",
+  "version": "1.0.0",
+  "description": "Portfolio of Jabez Gabrielraj E — Cybersecurity Analyst & Infrastructure",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node serve.js"
+  },
+  "dependencies": {
+    "motion": "^12.0.0"
+  },
+  "author": "Jabez Gabrielraj E",
+  "license": "ISC"
+}
+
