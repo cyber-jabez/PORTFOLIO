@@ -6,13 +6,13 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 let lenis = null;
 if (!reduceMotion && typeof Lenis !== 'undefined') {
   lenis = new Lenis({
-    duration: 0.95,
-    easing: (t) => 1 - Math.pow(1 - t, 3.5),
-    orientation: 'vertical',
-    gestureOrientation: 'vertical',
+    lerp: 0.075, // Fluid momentum damping: glides and decelerates naturally based on scroll velocity
+    wheelMultiplier: 1.05, // Smooth, responsive velocity accumulation
+    touchMultiplier: 1.2,
     smoothWheel: true,
-    wheelMultiplier: 0.92,
-    touchMultiplier: 1.5
+    syncTouch: false,
+    infinite: false,
+    autoResize: true
   });
 
   lenis.on('scroll', ScrollTrigger.update);
@@ -26,7 +26,11 @@ if (!reduceMotion && typeof Lenis !== 'undefined') {
 /* Helper to smooth scroll to an element or position */
 function scrollToSection(target, offset = 0) {
   if (lenis) {
-    lenis.scrollTo(target, { offset: offset, duration: 1.1 });
+    lenis.scrollTo(target, {
+      offset: offset,
+      duration: 1.35,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+    });
   } else {
     if (typeof target === 'number') {
       window.scrollTo({ top: target, behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -133,7 +137,7 @@ function initProjectsReel() {
         pin: true,
         start: 'top top',
         end: () => `+=${getScrollAmount()}`,
-        scrub: 0.6,
+        scrub: 0.8, // Fluid inertia sync with Lenis
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const p = self.progress;
