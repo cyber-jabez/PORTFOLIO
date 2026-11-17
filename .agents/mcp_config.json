@@ -6,7 +6,9 @@
         "shadcn@latest",
         "mcp"
       ]
+    },
+    "threeui": {
+      "url": "https://threeui.com/api/mcp"
     }
   }
 }
-
