@@ -9,6 +9,12 @@
     },
     "threeui": {
       "url": "https://threeui.com/api/mcp"
+    },
+    "21st": {
+      "url": "https://21st.dev/api/mcp",
+      "headers": {
+        "x-api-key": "21st_sk_411522bc8e29e479f712c22167e3940cfbeead6a6e78b6a6f574df9582d14c45"
+      }
     }
   }
 }
