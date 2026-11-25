@@ -1,5 +1,13 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cyber-jabez.github.io/PORTFOLIO/sitemap.xml
+User-agent: Googlebot
+Allow: /
 
+User-agent: Bravebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://cyber-jabez.github.io/PORTFOLIO/sitemap.xml
