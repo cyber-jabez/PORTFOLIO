@@ -1034,17 +1034,21 @@ footer {
 .giant-name {
   font-family: var(--sans);
   font-weight: 900;
-  font-size: clamp(2.4rem, 8.2vw, 8.8rem);
+  font-size: clamp(2.8rem, 8.8vw, 11rem);
   line-height: 1.05;
   letter-spacing: -0.045em;
-  text-transform: lowercase;
+  text-transform: none;
   white-space: nowrap;
   display: inline-flex;
-  gap: clamp(14px, 2.5vw, 36px);
+  gap: clamp(14px, 2vw, 36px);
   margin: 0;
   padding: 10px 0 clamp(16px, 2vw, 28px) 0;
   width: 100%;
   justify-content: center;
+}
+
+.giant-name-row {
+  display: contents;
 }
 
 .giant-word {
@@ -1138,19 +1142,25 @@ footer {
   .giant-name {
     flex-direction: column;
     align-items: center;
-    font-size: clamp(3.6rem, 16.5vw, 6.8rem);
+    font-size: clamp(2.8rem, 12.5vw, 5.2rem);
     line-height: 1.05;
     letter-spacing: -0.04em;
-    gap: 8px;
+    gap: 6px;
     text-align: center;
     width: 100%;
     padding-bottom: 20px;
+  }
+  .giant-name-row {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 16px);
   }
   .giant-word {
     display: inline-flex;
     justify-content: center;
     gap: 0.01em;
-    padding-bottom: 6px;
+    padding-bottom: 4px;
   }
   .footer-bottom {
     flex-direction: column;
