@@ -666,8 +666,8 @@ const GRAINIENT_DARK_CONFIG = {
 };
 
 const GRAINIENT_LIGHT_CONFIG = {
-  colors: ['#FFFFFF', '#F8F8FA', '#F3F4F6', '#FEEAE8', '#FDB4AE', '#E8271A'],
-  lightMode: true
+  colors: ['#FFF0E6', '#FFB885', '#FF8C42', '#FF6B35', '#F95722', '#E8271A'],
+  lightMode: false
 };
 
 function getGrainientConfig(theme) {
@@ -698,6 +698,7 @@ function initHeroGrainient() {
     intro: true
   });
 
+  window.heroGrainientInstance = heroGrainientInstance;
   return heroGrainientInstance;
 }
 
