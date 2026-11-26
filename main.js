@@ -455,9 +455,18 @@ function initScrollUI() {
   }
 
   if (backTop) {
+    const footer = document.querySelector('footer.site-footer, footer');
     ScrollTrigger.create({
       start: 500,
-      onUpdate: () => {
+      onUpdate: (self) => {
+        if (footer) {
+          const footerRect = footer.getBoundingClientRect();
+          // Hide floating backTop when footer action pill is in view or near bottom
+          if (footerRect.top < window.innerHeight - 80) {
+            backTop.classList.remove('show');
+            return;
+          }
+        }
         backTop.classList.toggle('show', window.scrollY > 500);
       }
     });
@@ -717,7 +726,7 @@ window.addEventListener('themechange', (e) => {
 /* ============ Magnetic Buttons ============ */
 function initMagneticButtons() {
   if (reduceMotion) return;
-  document.querySelectorAll('.btn, #backTop, .case-link').forEach(btn => {
+  document.querySelectorAll('.btn, #backTop, #footerActionPill, .footer-cta-btn, .case-link').forEach(btn => {
     btn.addEventListener('mousemove', e => {
       const r = btn.getBoundingClientRect();
       const x = e.clientX - r.left - r.width / 2;
@@ -748,6 +757,146 @@ function initBlurTypography() {
   }
 }
 
+/* ============ Modern Studio Giant Name Footer (Reflexlabs & ReactBits Aesthetics) ============ */
+function initModernFooter() {
+  const footer = document.querySelector('.site-footer');
+  if (!footer) return;
+
+  // 1. Live Coimbatore IST Clock (HH:MM:SS IST)
+  const clockEl = document.getElementById('liveIstClock');
+  if (clockEl) {
+    const updateClock = () => {
+      try {
+        const istTime = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Asia/Kolkata',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).format(new Date());
+        clockEl.textContent = `${istTime} IST`;
+      } catch (e) {
+        const d = new Date();
+        const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+        const ist = new Date(utc + (3600000 * 5.5));
+        const pad = (n) => String(n).padStart(2, '0');
+        clockEl.textContent = `${pad(ist.getHours())}:${pad(ist.getMinutes())}:${pad(ist.getSeconds())} IST`;
+      }
+    };
+    updateClock();
+    setInterval(updateClock, 1000);
+  }
+
+  // 2. Interactive Action Pill / Back to Top
+  const actionPill = document.getElementById('footerActionPill');
+  if (actionPill) {
+    actionPill.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToSection(0, 0);
+    });
+  }
+
+  // 3. GSAP ScrollTrigger Entrance Animation for Giant Name
+  const chars = footer.querySelectorAll('.giant-name .char');
+  const giantTrack = document.getElementById('giantNameTrack') || document.getElementById('giantNameWrapper');
+
+  if (chars.length && giantTrack) {
+    if (!reduceMotion) {
+      gsap.set(chars, {
+        yPercent: 110,
+        rotateX: 20,
+        transformOrigin: '50% 100%',
+        opacity: 0.1
+      });
+
+      ScrollTrigger.create({
+        trigger: giantTrack,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => {
+          gsap.to(chars, {
+            yPercent: 0,
+            rotateX: 0,
+            opacity: 1,
+            duration: 0.95,
+            stagger: {
+              each: 0.022,
+              from: 'start'
+            },
+            ease: 'power4.out',
+            onComplete: () => {
+              gsap.set(chars, { clearProps: 'transform,opacity' });
+            }
+          });
+        }
+      });
+    } else {
+      gsap.set(chars, { opacity: 1, yPercent: 0 });
+    }
+
+    // 4. ReactBits / Liquid Proximity Wave on Desktop Cursor Hover
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (canHover && !reduceMotion) {
+      const nameWrapper = document.getElementById('giantNameWrapper');
+      if (nameWrapper) {
+        const onMouseMove = (e) => {
+          const mouseX = e.clientX;
+          const mouseY = e.clientY;
+          const radius = Math.min(260, window.innerWidth * 0.22);
+
+          chars.forEach((char) => {
+            const rect = char.getBoundingClientRect();
+            const charX = rect.left + rect.width / 2;
+            const charY = rect.top + rect.height / 2;
+            const dist = Math.hypot(mouseX - charX, mouseY - charY);
+
+            if (dist < radius) {
+              const norm = 1 - dist / radius;
+              const factor = Math.sin(norm * (Math.PI / 2));
+              const yOffset = -26 * factor;
+              const scale = 1 + 0.12 * factor;
+              const tilt = ((mouseX - charX) / radius) * -12 * factor;
+
+              gsap.to(char, {
+                y: yOffset,
+                scale: scale,
+                rotation: tilt,
+                duration: 0.28,
+                ease: 'power2.out',
+                overwrite: 'auto'
+              });
+            } else {
+              gsap.to(char, {
+                y: 0,
+                scale: 1,
+                rotation: 0,
+                duration: 0.5,
+                ease: 'power3.out',
+                overwrite: 'auto'
+              });
+            }
+          });
+        };
+
+        const onMouseLeave = () => {
+          gsap.to(chars, {
+            y: 0,
+            scale: 1,
+            rotation: 0,
+            duration: 0.6,
+            stagger: 0.015,
+            ease: 'power3.out',
+            overwrite: 'auto'
+          });
+        };
+
+        nameWrapper.addEventListener('mousemove', onMouseMove);
+        nameWrapper.addEventListener('mouseleave', onMouseLeave);
+      }
+    }
+  }
+}
+
 /* ============ Main Boot Sequence ============ */
 function boot() {
   const main = document.querySelector('main');
@@ -761,6 +910,7 @@ function boot() {
   initBlurTypography();
   initMagneticButtons();
   initModal();
+  initModernFooter();
   pageIntro();
 
   // Refresh ScrollTrigger once fonts load or layout stabilizes
