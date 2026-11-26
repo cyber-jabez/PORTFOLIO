@@ -82,15 +82,15 @@
           `circle(${endRadius}px at ${x}px ${y}px)`
         ];
 
-        // Animate pseudo-element expanding outwards
+        // Animate the new theme view expanding outwards from click point (symmetrical for dark and light)
         document.documentElement.animate(
           {
-            clipPath: isDark ? [...clipPath].reverse() : clipPath
+            clipPath: clipPath
           },
           {
-            duration: 600,
+            duration: 520,
             easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-            pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)'
+            pseudoElement: '::view-transition-new(root)'
           }
         );
       }).catch(() => {
@@ -138,7 +138,7 @@
 
     let x, y;
     if (event) {
-      if (typeof event.clientX === 'number' && typeof event.clientY === 'number') {
+      if (typeof event.clientX === 'number' && typeof event.clientY === 'number' && (event.clientX > 0 || event.clientY > 0)) {
         x = event.clientX;
         y = event.clientY;
       } else if (event.currentTarget && event.currentTarget.getBoundingClientRect) {

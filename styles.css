@@ -7,7 +7,7 @@
   --bg-secondary: #09090d;
   --bg-card: rgba(12, 12, 12, 0.85);
   --bg-card-hover: rgba(20, 20, 24, 0.95);
-  --bg-header: rgba(0, 0, 0, 0.82);
+  --bg-header: rgba(0, 0, 0, 0.32);
   --bg-nav: rgba(0, 0, 0, 0.96);
   --ink: #F5F3EF;
   --dim: #8C8A87;
@@ -34,7 +34,7 @@
   --bg-secondary: #FFFFFF;
   --bg-card: rgba(255, 255, 255, 0.92);
   --bg-card-hover: #FFFFFF;
-  --bg-header: rgba(244, 244, 246, 0.85);
+  --bg-header: rgba(255, 255, 255, 0.36);
   --bg-nav: rgba(244, 244, 246, 0.97);
   --ink: #0C0D11;
   --dim: #4E525E;
@@ -67,7 +67,6 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
   cursor:default;
-  transition:background-color 0.3s ease, color 0.3s ease;
 }
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
@@ -148,10 +147,11 @@ header{
   width:100%;
   padding:clamp(16px, 2vh, 22px) clamp(24px, 3vw, 44px);
   background:var(--bg-header);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(24px) saturate(190%);
+  -webkit-backdrop-filter:blur(24px) saturate(190%);
   border-bottom:1px solid var(--line);
-  transition:padding 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  transition:padding 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .brand{
   display:inline-flex;
@@ -839,12 +839,6 @@ footer{
 }
 ::view-transition-new(root) {
   z-index: 9999;
-}
-[data-theme="dark"]::view-transition-old(root) {
-  z-index: 9999;
-}
-[data-theme="dark"]::view-transition-new(root) {
-  z-index: 1;
 }
 
 /* Fallback Ripple for browsers without View Transitions */
