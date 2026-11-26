@@ -658,12 +658,33 @@ function initModal() {
 }
 
 /* ============ WebGL2 Grainient Fluid Shader Hero ============ */
+let heroGrainientInstance = null;
+
+const GRAINIENT_DARK_CONFIG = {
+  colors: ['#000000', '#1c0505', '#570d08', '#99110b', '#E8271A', '#ff6b55'],
+  lightMode: false
+};
+
+const GRAINIENT_LIGHT_CONFIG = {
+  colors: ['#FFFFFF', '#F8F8FA', '#F3F4F6', '#FEEAE8', '#FDB4AE', '#E8271A'],
+  lightMode: true
+};
+
+function getGrainientConfig(theme) {
+  const currentTheme = theme || document.documentElement.getAttribute('data-theme') || 'dark';
+  return currentTheme === 'light' ? GRAINIENT_LIGHT_CONFIG : GRAINIENT_DARK_CONFIG;
+}
+
 function initHeroGrainient() {
   const container = document.getElementById('heroGrainient');
   if (!container || typeof initGrainient !== 'function') return null;
 
-  return initGrainient(container, {
-    colors: ['#000000', '#1c0505', '#570d08', '#99110b', '#E8271A', '#ff6b55'],
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  const cfg = getGrainientConfig(currentTheme);
+
+  heroGrainientInstance = initGrainient(container, {
+    colors: cfg.colors,
+    lightMode: cfg.lightMode,
     type: 'linear',
     angle: 55,
     flow: 0.8,
@@ -676,7 +697,21 @@ function initHeroGrainient() {
     clickSwirl: true,
     intro: true
   });
+
+  return heroGrainientInstance;
 }
+
+// Seamlessly transition shader when theme changes
+window.addEventListener('themechange', (e) => {
+  const newTheme = e.detail && e.detail.theme;
+  if (heroGrainientInstance && typeof heroGrainientInstance.update === 'function') {
+    const cfg = getGrainientConfig(newTheme);
+    heroGrainientInstance.update({
+      colors: cfg.colors,
+      lightMode: cfg.lightMode
+    });
+  }
+});
 
 /* ============ Magnetic Buttons ============ */
 function initMagneticButtons() {

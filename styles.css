@@ -875,8 +875,8 @@ footer{
   fill: rgba(217, 35, 23, 0.06);
 }
 [data-theme="light"] #heroGrainient {
-  opacity: 0.35;
-  filter: saturate(1.2) brightness(1.1);
+  opacity: 1;
+  filter: none;
 }
 [data-theme="light"] ::-webkit-scrollbar-track {
   background: #EAEAEF;
