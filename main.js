@@ -833,67 +833,6 @@ function initModernFooter() {
     } else {
       gsap.set(chars, { opacity: 1, yPercent: 0 });
     }
-
-    // 4. ReactBits / Liquid Proximity Wave on Desktop Cursor Hover
-    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (canHover && !reduceMotion) {
-      const nameWrapper = document.getElementById('giantNameWrapper');
-      if (nameWrapper) {
-        const onMouseMove = (e) => {
-          const mouseX = e.clientX;
-          const mouseY = e.clientY;
-          const radius = Math.min(260, window.innerWidth * 0.22);
-
-          chars.forEach((char) => {
-            const rect = char.getBoundingClientRect();
-            const charX = rect.left + rect.width / 2;
-            const charY = rect.top + rect.height / 2;
-            const dist = Math.hypot(mouseX - charX, mouseY - charY);
-
-            if (dist < radius) {
-              const norm = 1 - dist / radius;
-              const factor = Math.sin(norm * (Math.PI / 2));
-              const yOffset = -26 * factor;
-              const scale = 1 + 0.12 * factor;
-              const tilt = ((mouseX - charX) / radius) * -12 * factor;
-
-              gsap.to(char, {
-                y: yOffset,
-                scale: scale,
-                rotation: tilt,
-                duration: 0.28,
-                ease: 'power2.out',
-                overwrite: 'auto'
-              });
-            } else {
-              gsap.to(char, {
-                y: 0,
-                scale: 1,
-                rotation: 0,
-                duration: 0.5,
-                ease: 'power3.out',
-                overwrite: 'auto'
-              });
-            }
-          });
-        };
-
-        const onMouseLeave = () => {
-          gsap.to(chars, {
-            y: 0,
-            scale: 1,
-            rotation: 0,
-            duration: 0.6,
-            stagger: 0.015,
-            ease: 'power3.out',
-            overwrite: 'auto'
-          });
-        };
-
-        nameWrapper.addEventListener('mousemove', onMouseMove);
-        nameWrapper.addEventListener('mouseleave', onMouseLeave);
-      }
-    }
   }
 }
 
