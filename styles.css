@@ -7,7 +7,8 @@
   --bg-secondary: #09090d;
   --bg-card: rgba(12, 12, 12, 0.85);
   --bg-card-hover: rgba(20, 20, 24, 0.95);
-  --bg-header: rgba(0, 0, 0, 0.32);
+  --bg-header: rgba(6, 6, 9, 0.72);
+  --nav-link-color: rgba(245, 243, 239, 0.85);
   --bg-nav: rgba(0, 0, 0, 0.96);
   --ink: #F5F3EF;
   --dim: #8C8A87;
@@ -34,7 +35,8 @@
   --bg-secondary: #FFFFFF;
   --bg-card: rgba(255, 255, 255, 0.92);
   --bg-card-hover: #FFFFFF;
-  --bg-header: rgba(255, 255, 255, 0.36);
+  --bg-header: rgba(255, 255, 255, 0.76);
+  --nav-link-color: rgba(12, 13, 17, 0.82);
   --bg-nav: rgba(244, 244, 246, 0.97);
   --ink: #0C0D11;
   --dim: #4E525E;
@@ -226,8 +228,9 @@ nav.tabs a{
   font-size:11px;
   letter-spacing:0.12em;
   text-transform:uppercase;
-  color:var(--dim);
-  transition:color 0.25s ease;
+  color:var(--nav-link-color, var(--dim));
+  font-weight:600;
+  transition:color 0.25s ease, opacity 0.25s ease;
   position:relative;
   padding:6px 0;
   text-decoration:none;
@@ -237,7 +240,7 @@ nav.tabs a:hover{
 }
 nav.tabs a.active{
   color:var(--scarlet);
-  font-weight:600;
+  font-weight:700;
 }
 nav.tabs a.active::after{
   content:'';
