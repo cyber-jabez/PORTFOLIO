@@ -470,9 +470,25 @@ section{
 }
 .eyebrow{ font-family:var(--mono); font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--dim); display:flex; align-items:center; gap:10px; margin-bottom:24px; overflow:hidden; }
 .dot{ width:6px; height:6px; border-radius:50%; background:var(--scarlet); box-shadow:0 0 10px var(--scarlet); flex-shrink:0; }
-.hero-name{ font-family:var(--display); font-weight:900; font-size:clamp(3rem, 5.5vw, 5.8rem); line-height:0.93; letter-spacing:-0.03em; text-transform:uppercase; }
-.hero-name .word-mask{ overflow:hidden; display:block; }
-.hero-name .word-mask span{ display:inline-block; }
+.hero-name{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(3rem, 5.5vw, 5.8rem);
+  line-height:0.93;
+  letter-spacing:-0.03em;
+  text-transform:uppercase;
+  perspective:1000px;
+}
+.hero-name .word-mask{
+  overflow:hidden;
+  display:block;
+  padding-bottom:0.04em;
+}
+.hero-name .word-mask span{
+  display:inline-block;
+  will-change:transform, opacity;
+  transform-style:preserve-3d;
+}
 .accent-word{ color:var(--scarlet); }
 .hero-role{ max-width:580px; font-size:1.05rem; line-height:1.6; color:var(--dim); margin-top:24px; }
 .hero-actions{ display:flex; flex-wrap:wrap; gap:14px; margin-top:38px; }

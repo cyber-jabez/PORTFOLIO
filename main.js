@@ -53,14 +53,25 @@ function wrapLines(el) {
 
 function initTextSplit() {
   document.querySelectorAll('[data-split-lines]').forEach(wrapLines);
-  gsap.set('.chapter-title .line span, .hero-name .word-mask span', {
+  gsap.set('.chapter-title .line span', {
     yPercent: 110
+  });
+  gsap.set('.hero-name .word-mask span', {
+    yPercent: 125,
+    opacity: 0,
+    rotateX: 14,
+    transformOrigin: '50% 100%'
   });
 }
 initTextSplit();
 
 /* ============ Hero entrance animation ============ */
+let hasPageIntroRun = false;
+
 function pageIntro() {
+  if (hasPageIntroRun) return;
+  hasPageIntroRun = true;
+
   const tl = gsap.timeline({ delay: reduceMotion ? 0 : 0.08 });
   tl.from('header', { y: -26, opacity: 0, duration: 0.6, ease: 'power3.out' }, 0);
 
@@ -68,13 +79,19 @@ function pageIntro() {
     tl.from(el, { y: 18, opacity: 0, duration: 0.5, ease: 'power3.out' }, 0.12);
   });
 
+  // Hero name: cinematic word-by-word reveal
   tl.to('.hero-name .word-mask span', {
-    yPercent: 0, opacity: 1, duration: 0.85, ease: 'power4.out', stagger: 0.05
-  }, 0.2);
+    yPercent: 0,
+    opacity: 1,
+    rotateX: 0,
+    duration: 0.95,
+    ease: 'power3.out',
+    stagger: 0.2
+  }, 0.22);
 
-  tl.from('#hero .hero-role', { y: 14, opacity: 0, duration: 0.6, ease: 'power3.out' }, 0.5)
-    .from('.hero-actions .btn', { y: 14, opacity: 0, duration: 0.45, stagger: 0.08, ease: 'power3.out' }, 0.6)
-    .from('.scroll-cue', { opacity: 0, duration: 0.6 }, 0.75);
+  tl.from('#hero .hero-role', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.45')
+    .from('.hero-actions .btn', { y: 14, opacity: 0, duration: 0.45, stagger: 0.08, ease: 'power3.out' }, '-=0.35')
+    .from('.scroll-cue', { opacity: 0, duration: 0.6 }, '-=0.2');
 }
 
 /* ============ Section 03: Horizontal Pinned Projects Reel ============ */
@@ -935,11 +952,11 @@ function initPreloader(onComplete) {
     });
 
     exitTl
-      .to(content, { opacity: 0, y: -16, duration: 0.3, ease: 'power2.in' })
-      .to(preloader, { yPercent: -100, duration: 0.65, ease: 'power4.inOut' }, '-=0.08')
+      .to(content, { opacity: 0, y: -16, duration: 0.25, ease: 'power2.in' })
+      .to(preloader, { yPercent: -100, duration: 0.65, ease: 'power4.inOut' }, '-=0.05')
       .add(() => {
         if (onComplete) onComplete();
-      }, '-=0.45');
+      }, '-=0.18');
   };
 
   // Skip instantly on click or keyboard press
@@ -1038,7 +1055,11 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     const main = document.querySelector('main');
     if (main && getComputedStyle(main).opacity === '0') gsap.set(main, { opacity: 1 });
-    gsap.to('.hero-name .word-mask span', { yPercent: 0, duration: 0.4 });
+    if (!hasPageIntroRun) {
+      pageIntro();
+    } else {
+      gsap.to('.hero-name .word-mask span', { yPercent: 0, opacity: 1, rotateX: 0, duration: 0.4 });
+    }
     ScrollTrigger.refresh();
-  }, 1000);
+  }, 2800);
 });
