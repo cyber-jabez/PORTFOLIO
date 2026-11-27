@@ -844,9 +844,16 @@ footer {
 .footer-brand-name {
   font-family: var(--display);
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: clamp(1.28rem, 1.95vw, 1.7rem);
   letter-spacing: -0.02em;
   color: var(--ink);
+  line-height: 1.2;
+}
+
+@media (min-width: 1024px) {
+  .footer-brand-name {
+    font-size: 1.6rem;
+  }
 }
 
 .footer-statement {
@@ -1288,4 +1295,227 @@ footer {
 [data-theme="light"] .stack-chip {
   background: rgba(0, 0, 0, 0.04);
   color: var(--dim);
+}
+
+/* ==========================================================================
+   Custom 404 Not Found Page (Cybersecurity & Studio Design System)
+   ========================================================================== */
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow-x: hidden;
+  background-color: var(--bg);
+}
+
+.error-hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(120px, 16vh, 180px) clamp(20px, 4vw, 40px) clamp(60px, 8vh, 90px);
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.error-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--scarlet);
+  background: var(--scarlet-dim);
+  border: 1px solid rgba(232, 39, 26, 0.3);
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 20px rgba(232, 39, 26, 0.15);
+}
+
+.error-status-pill .status-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--scarlet);
+  box-shadow: 0 0 8px var(--scarlet);
+  animation: pulseScarlet 2s infinite ease-in-out;
+}
+
+@keyframes pulseScarlet {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.error-code-wrapper {
+  position: relative;
+  margin-bottom: 12px;
+  line-height: 0.85;
+}
+
+.error-code-glitch {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(6.5rem, 18vw, 13.5rem);
+  letter-spacing: -0.05em;
+  background: linear-gradient(180deg, var(--ink) 0%, rgba(245, 243, 239, 0.25) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 40px rgba(232, 39, 26, 0.2);
+}
+
+[data-theme="light"] .error-code-glitch {
+  background: linear-gradient(180deg, var(--ink) 0%, rgba(12, 13, 17, 0.2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.error-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.error-desc {
+  font-family: var(--sans);
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.6;
+  color: var(--dim);
+  max-width: 580px;
+  margin: 0 auto 32px;
+}
+
+/* Diagnostic Terminal Box */
+.error-terminal {
+  width: 100%;
+  max-width: 620px;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  margin: 0 auto 36px;
+  text-align: left;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.error-terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--line);
+}
+
+[data-theme="light"] .error-terminal-header {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.error-terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.error-terminal-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.error-terminal-dots span:nth-child(1) { background: #FF5F56; }
+.error-terminal-dots span:nth-child(2) { background: #FFBD2E; }
+.error-terminal-dots span:nth-child(3) { background: #27C93F; }
+
+.error-terminal-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 0.06em;
+}
+
+.error-terminal-body {
+  padding: 16px 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--dim);
+}
+
+.error-terminal-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.error-terminal-key {
+  color: var(--faint);
+  min-width: 110px;
+}
+
+.error-terminal-val {
+  color: var(--ink);
+  word-break: break-all;
+}
+
+.error-terminal-val.scarlet {
+  color: var(--scarlet);
+  font-weight: 600;
+}
+
+.error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.error-hint {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--faint);
+  letter-spacing: 0.06em;
+}
+
+.error-hint kbd {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--ink);
+  font-size: 10px;
+}
+
+.error-footer {
+  padding: 20px clamp(20px, 4vw, 44px);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dim);
+  gap: 12px;
+  background: var(--bg-header);
+  position: relative;
+  z-index: 10;
 }

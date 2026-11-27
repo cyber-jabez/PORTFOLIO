@@ -26,8 +26,14 @@ const MIME_TYPES = {
 function serveFile(res, filePath) {
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
-      res.end('<h1>404 Not Found</h1><p>The requested file was not found.</p>');
+      const notFoundPath = path.join(PUBLIC_DIR, '404.html');
+      if (fs.existsSync(notFoundPath)) {
+        res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
+        fs.createReadStream(notFoundPath).pipe(res);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
+        res.end('<h1>404 Not Found</h1><p>The requested file was not found.</p>');
+      }
       return;
     }
 

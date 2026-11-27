@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // Dynamically calculate and set base href to ensure CSS, JS, icons, and links resolve
+    // on root domain (cyber-jabez.github.io/404), subpaths (cyber-jabez.github.io/PORTFOLIO/...), and localhost
+    (function () {
+      var isSubpath = window.location.pathname.startsWith('/PORTFOLIO');
+      document.write('<base href="' + (isSubpath ? '/PORTFOLIO/' : '/') + '">');
+    })();
+  </script>
+  <title>404 // Node Not Found — Jabez Gabrielraj</title>
+  <meta name="description" content="404 - Page Not Found. The requested security route or node does not exist.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Favicons & Manifest -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3.3">
+  <script>
+    (function () { try { var s = localStorage.getItem('portfolio-theme'); var t = s || 'dark'; document.documentElement.setAttribute('data-theme', t); document.documentElement.style.colorScheme = t; } catch (e) { } })();
+  </script>
+</head>
+
+<body class="error-page">
+
+  <!-- Header -->
+  <header>
+    <a href="index.html#hero" class="brand" data-label="Home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 512 512" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="512" height="512" rx="110" fill="#07070b" />
+          <rect width="504" height="504" x="4" y="4" rx="106" fill="none" stroke="#E8271A" stroke-width="8"
+            stroke-opacity="0.6" />
+          <path d="M 40 100 L 40 40 L 100 40" fill="none" stroke="#E8271A" stroke-width="14" stroke-linecap="round" />
+          <path d="M 472 100 L 472 40 L 412 40" fill="none" stroke="#E8271A" stroke-width="14" stroke-linecap="round" />
+          <path d="M 40 412 L 40 472 L 100 472" fill="none" stroke="#E8271A" stroke-width="14" stroke-linecap="round" />
+          <path d="M 472 412 L 472 472 L 412 472" fill="none" stroke="#E8271A" stroke-width="14"
+            stroke-linecap="round" />
+          <polygon points="256,76 414,168 414,348 256,440 98,348 98,168" fill="rgba(232, 39, 26, 0.08)" stroke="#E8271A"
+            stroke-width="8" />
+          <text x="256" y="295" font-family="'JetBrains Mono', monospace" font-size="140" font-weight="900"
+            text-anchor="middle" fill="#FFFFFF">JG<tspan fill="#E8271A">R</tspan></text>
+        </svg>
+      </span>
+      <span class="brand-text">JG<span>R</span></span>
+    </a>
+
+    <div class="header-right">
+      <div class="header-actions">
+        <a href="index.html#hero" class="btn ghost" style="padding: 10px 18px; font-size: 11px;">
+          <span>← Back to Portfolio</span>
+        </a>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle Light / Dark mode">
+          <span class="theme-toggle-icon sun-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path
+                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41">
+              </path>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon moon-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Error Hero Content -->
+  <main class="error-hero">
+    <div class="error-status-pill">
+      <span class="status-indicator"></span>
+      <span>STATUS 404 // ROUTE_NOT_FOUND</span>
+    </div>
+
+    <div class="error-code-wrapper">
+      <h1 class="error-code-glitch">404</h1>
+    </div>
+
+    <h2 class="error-title">Target Endpoint Unreachable</h2>
+    <p class="error-desc">
+      The requested route does not exist in the active routing table, has been decommissioned, or is gated behind zero-trust network boundaries.
+    </p>
+
+    <!-- Diagnostic Telemetry Card -->
+    <div class="error-terminal" aria-label="Security Telemetry Diagnostic">
+      <div class="error-terminal-header">
+        <div class="error-terminal-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="error-terminal-title">SECURITY GATEWAY // TELEMETRY DUMP</div>
+      </div>
+      <div class="error-terminal-body">
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">HOST:</span>
+          <span class="error-terminal-val" id="diagHost">cyber-jabez.github.io</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">REQ_PATH:</span>
+          <span class="error-terminal-val scarlet" id="diagPath">/404.html</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">REFERRER:</span>
+          <span class="error-terminal-val" id="diagReferrer">DIRECT_ACCESS</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">PROTOCOL:</span>
+          <span class="error-terminal-val">TLS 1.3 // ZERO-TRUST PROXY</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">TIMESTAMP:</span>
+          <span class="error-terminal-val" id="diagTime">2026-11-27 18:30:00 UTC</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">ACTION:</span>
+          <span class="error-terminal-val scarlet">RECOMMENDED_FAILOVER_TO_HOME</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="error-actions">
+      <a href="index.html#hero" class="btn primary">
+        <span>Return to Home Base</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </a>
+      <a href="index.html#projects" class="btn ghost">
+        <span>View Security Projects</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2">
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+      </a>
+      <a href="index.html#contact" class="btn ghost">
+        <span>Report Issue / Contact</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+        </svg>
+      </a>
+    </div>
+
+    <div class="error-hint">
+      Keyboard shortcut: Press <kbd>ESC</kbd> or <kbd>H</kbd> to return home
+    </div>
+  </main>
+
+  <!-- Error Page Footer -->
+  <footer class="error-footer">
+    <div>
+      <span>JABEZ GABRIELRAJ E</span>
+      <span style="opacity: 0.4; margin: 0 8px;">•</span>
+      <span>© 2026 ALL RIGHTS RESERVED</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="width: 6px; height: 6px; border-radius: 50%; background: #27C93F; display: inline-block;"></span>
+      <span>SYSTEM OPERATIONAL // BLUE TEAM DEFENSE</span>
+    </div>
+  </footer>
+
+  <script src="theme.js"></script>
+  <script>
+    // Populate dynamic diagnostic telemetry
+    (function () {
+      try {
+        const hostEl = document.getElementById('diagHost');
+        const pathEl = document.getElementById('diagPath');
+        const refEl = document.getElementById('diagReferrer');
+        const timeEl = document.getElementById('diagTime');
+
+        if (hostEl) hostEl.textContent = window.location.hostname || 'cyber-jabez.github.io';
+        if (pathEl) {
+          const currentPath = window.location.pathname + window.location.search + window.location.hash;
+          pathEl.textContent = currentPath && currentPath !== '/' ? currentPath : '/undefined-node';
+        }
+        if (refEl) {
+          refEl.textContent = document.referrer ? document.referrer : 'DIRECT_TRAFFIC';
+        }
+        if (timeEl) {
+          timeEl.textContent = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+        }
+      } catch (e) { }
+
+      // Keyboard navigation shortcuts
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.key === 'h' || e.key === 'H') {
+          window.location.href = 'index.html#hero';
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>
