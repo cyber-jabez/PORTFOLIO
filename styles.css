@@ -1948,3 +1948,89 @@ body.loading-lock {
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   Custom Interactive Cursor (Red Dot with Outer Circle) for Laptop/Desktop
+   ========================================================================== */
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+
+.custom-cursor-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--scarlet, #E8271A);
+  box-shadow: 0 0 10px rgba(232, 39, 26, 0.8), 0 0 4px #E8271A;
+  z-index: 10001;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, opacity 0.25s ease;
+}
+
+.custom-cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(232, 39, 26, 0.5);
+  background: radial-gradient(circle, rgba(232, 39, 26, 0.08) 0%, transparent 75%);
+  box-shadow: 0 0 12px rgba(232, 39, 26, 0.15);
+  z-index: 10000;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, opacity 0.25s ease;
+}
+
+/* Hover State on Interactive Elements */
+.custom-cursor-ring.cursor-hover {
+  transform: translate(-50%, -50%) scale(1.65);
+  border-color: rgba(232, 39, 26, 0.95);
+  background: radial-gradient(circle, rgba(232, 39, 26, 0.16) 0%, transparent 80%);
+  box-shadow: 0 0 20px rgba(232, 39, 26, 0.35);
+}
+
+.custom-cursor-dot.cursor-hover {
+  transform: translate(-50%, -50%) scale(1.3);
+  background-color: #ff4d40;
+}
+
+/* Click Active State */
+.custom-cursor-ring.cursor-active {
+  transform: translate(-50%, -50%) scale(1.15);
+  border-color: var(--scarlet, #E8271A);
+  background: rgba(232, 39, 26, 0.25);
+}
+
+.custom-cursor-dot.cursor-active {
+  transform: translate(-50%, -50%) scale(0.65);
+}
+
+/* Laptop & Desktop Viewport: Hide default pointer when custom cursor is engaged */
+@media (hover: hover) and (pointer: fine) and (min-width: 769px) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor .btn,
+  body.has-custom-cursor [role="button"],
+  body.has-custom-cursor .project-card,
+  body.has-custom-cursor .case,
+  body.has-custom-cursor .tab,
+  body.has-custom-cursor .case-link,
+  body.has-custom-cursor .cert-verify-link,
+  body.has-custom-cursor #backTop,
+  body.has-custom-cursor .theme-toggle {
+    cursor: none !important;
+  }
+}
+
+/* Touch, Mobile & Reduced Motion Fallbacks */
+@media (max-width: 768px), (pointer: coarse), (hover: none) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}

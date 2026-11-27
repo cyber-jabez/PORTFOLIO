@@ -757,6 +757,115 @@ window.addEventListener('themechange', (e) => {
   }
 });
 
+/* ============ Custom Interactive Cursor (Red Dot with Outer Circle) ============ */
+function initCustomCursor() {
+  if (reduceMotion) return;
+
+  const isLaptopOrDesktop = () => {
+    return window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 769px)').matches;
+  };
+
+  let dot = document.querySelector('.custom-cursor-dot');
+  let ring = document.querySelector('.custom-cursor-ring');
+
+  if (!dot) {
+    dot = document.createElement('div');
+    dot.className = 'custom-cursor-dot';
+    document.body.appendChild(dot);
+  }
+  if (!ring) {
+    ring = document.createElement('div');
+    ring.className = 'custom-cursor-ring';
+    document.body.appendChild(ring);
+  }
+
+  const updateCursorAvailability = () => {
+    if (isLaptopOrDesktop()) {
+      document.body.classList.add('has-custom-cursor');
+    } else {
+      document.body.classList.remove('has-custom-cursor');
+      gsap.set([dot, ring], { opacity: 0 });
+    }
+  };
+
+  updateCursorAvailability();
+  window.addEventListener('resize', updateCursorAvailability);
+
+  // Set initial position centered
+  gsap.set([dot, ring], { xPercent: -50, yPercent: -50, opacity: 0 });
+
+  // Ultra-responsive GSAP quickTo setters for 60-120fps hardware-accelerated tracking
+  const setDotX = gsap.quickTo(dot, 'x', { duration: 0.02, ease: 'none' });
+  const setDotY = gsap.quickTo(dot, 'y', { duration: 0.02, ease: 'none' });
+  const setRingX = gsap.quickTo(ring, 'x', { duration: 0.16, ease: 'power2.out' });
+  const setRingY = gsap.quickTo(ring, 'y', { duration: 0.16, ease: 'power2.out' });
+
+  let isVisible = false;
+
+  const onPointerMove = (e) => {
+    if (!isLaptopOrDesktop()) return;
+
+    if (!isVisible) {
+      isVisible = true;
+      gsap.to([dot, ring], { opacity: 1, duration: 0.2, overwrite: 'auto' });
+    }
+
+    setDotX(e.clientX);
+    setDotY(e.clientY);
+    setRingX(e.clientX);
+    setRingY(e.clientY);
+  };
+
+  const onMouseLeave = () => {
+    isVisible = false;
+    gsap.to([dot, ring], { opacity: 0, duration: 0.25, overwrite: 'auto' });
+  };
+
+  const onMouseEnter = () => {
+    if (!isLaptopOrDesktop()) return;
+    isVisible = true;
+    gsap.to([dot, ring], { opacity: 1, duration: 0.2, overwrite: 'auto' });
+  };
+
+  window.addEventListener('pointermove', onPointerMove, { passive: true });
+  document.addEventListener('mouseleave', onMouseLeave);
+  document.addEventListener('mouseenter', onMouseEnter);
+
+  // Interactive element hover scale states (delegated event listener)
+  const interactiveSelector = 'a, button, .btn, .project-card, .case, .tab, .case-link, .cert-verify-link, input, textarea, select, [role="button"], #backTop, .theme-toggle';
+
+  document.addEventListener('mouseover', (e) => {
+    if (!isLaptopOrDesktop()) return;
+    const target = e.target.closest(interactiveSelector);
+    if (target) {
+      ring.classList.add('cursor-hover');
+      dot.classList.add('cursor-hover');
+    }
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    if (!isLaptopOrDesktop()) return;
+    const target = e.target.closest(interactiveSelector);
+    if (target) {
+      ring.classList.remove('cursor-hover');
+      dot.classList.remove('cursor-hover');
+    }
+  });
+
+  // Click / Press feedback
+  document.addEventListener('mousedown', () => {
+    if (!isLaptopOrDesktop()) return;
+    ring.classList.add('cursor-active');
+    dot.classList.add('cursor-active');
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!isLaptopOrDesktop()) return;
+    ring.classList.remove('cursor-active');
+    dot.classList.remove('cursor-active');
+  });
+}
+
 /* ============ Magnetic Buttons ============ */
 function initMagneticButtons() {
   if (reduceMotion) return;
@@ -1015,6 +1124,7 @@ function boot() {
   initLinePath();
   initSectionPinning();
   initBlurTypography();
+  initCustomCursor();
   initMagneticButtons();
   initCardSpotlight();
   initModal();
