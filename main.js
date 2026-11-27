@@ -530,19 +530,36 @@ function initNav() {
     menuBtn.addEventListener('click', () => toggleMenu());
   }
 
-  // Intercept anchor clicks for smooth scrolling and auto-close mobile nav
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const targetId = a.getAttribute('href');
-      if (!targetId || targetId === '#') return;
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        e.preventDefault();
-        toggleMenu(false);
-        const offset = 0;
-        scrollToSection(targetEl, offset);
-      }
-    });
+  // Intercept anchor and in-page hash clicks for smooth scrolling and auto-close mobile nav
+  document.querySelectorAll('a[href]').forEach(a => {
+    const rawHref = a.getAttribute('href');
+    if (!rawHref) return;
+
+    // Check for in-page hash (#section or index.html#section)
+    let targetId = null;
+    if (rawHref.startsWith('#')) {
+      targetId = rawHref;
+    } else if (rawHref.includes('#') && (rawHref.startsWith('index.html#') || rawHref.startsWith('./index.html#'))) {
+      targetId = rawHref.substring(rawHref.indexOf('#'));
+    }
+
+    if (targetId && targetId !== '#') {
+      a.addEventListener('click', (e) => {
+        const targetEl = document.querySelector(targetId);
+        if (targetEl || targetId === '#hero') {
+          e.preventDefault();
+          toggleMenu(false);
+          if (history.pushState) {
+            history.pushState(null, '', targetId);
+          }
+          if (targetId === '#hero') {
+            scrollToSection(0, 0);
+          } else {
+            scrollToSection(targetEl, 0);
+          }
+        }
+      });
+    }
   });
 
   document.addEventListener('keydown', (e) => {
