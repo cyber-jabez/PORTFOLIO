@@ -1977,68 +1977,46 @@ body.loading-lock {
 }
 
 /* ==========================================================================
-   Custom Interactive Cursor (Red Dot with Outer Circle) for Laptop/Desktop
+   Custom Minimal Red Dot Cursor for Laptop/Desktop Viewports
    ========================================================================== */
-.custom-cursor-dot,
-.custom-cursor-ring {
+.custom-cursor-dot {
   position: fixed;
   top: 0;
   left: 0;
+  width: 7.5px;
+  height: 7.5px;
+  background-color: var(--scarlet, #E8271A);
+  box-shadow: 0 0 10px rgba(232, 39, 26, 0.85), 0 0 3px #E8271A;
+  border-radius: 50%;
   pointer-events: none;
   opacity: 0;
   user-select: none;
   -webkit-user-select: none;
-  border-radius: 50%;
   transform: translate(-50%, -50%);
   will-change: transform, opacity;
-}
-
-.custom-cursor-dot {
-  width: 7px;
-  height: 7px;
-  background-color: var(--scarlet, #E8271A);
-  box-shadow: 0 0 10px rgba(232, 39, 26, 0.8), 0 0 4px #E8271A;
   z-index: 10001;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, opacity 0.25s ease;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.custom-cursor-ring {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(232, 39, 26, 0.5);
-  background: radial-gradient(circle, rgba(232, 39, 26, 0.08) 0%, transparent 75%);
-  box-shadow: 0 0 12px rgba(232, 39, 26, 0.15);
-  z-index: 10000;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, opacity 0.25s ease;
+/* When hovering over interactive elements, fade out red dot so normal hand pointer takes over */
+.custom-cursor-dot.cursor-interactive {
+  opacity: 0 !important;
+  transform: translate(-50%, -50%) scale(0.3);
 }
 
-/* Hover State on Interactive Elements */
-.custom-cursor-ring.cursor-hover {
-  transform: translate(-50%, -50%) scale(1.65);
-  border-color: rgba(232, 39, 26, 0.95);
-  background: radial-gradient(circle, rgba(232, 39, 26, 0.16) 0%, transparent 80%);
-  box-shadow: 0 0 20px rgba(232, 39, 26, 0.35);
-}
-
-.custom-cursor-dot.cursor-hover {
-  transform: translate(-50%, -50%) scale(1.3);
-  background-color: #ff4d40;
-}
-
-/* Click Active State */
-.custom-cursor-ring.cursor-active {
-  transform: translate(-50%, -50%) scale(1.15);
-  border-color: var(--scarlet, #E8271A);
-  background: rgba(232, 39, 26, 0.25);
-}
-
+/* Click feedback when clicking general background/canvas */
 .custom-cursor-dot.cursor-active {
   transform: translate(-50%, -50%) scale(0.65);
 }
 
-/* Laptop & Desktop Viewport: Hide default pointer when custom cursor is engaged */
+/* Laptop & Desktop Viewport Cursor Logic */
 @media (hover: hover) and (pointer: fine) and (min-width: 769px) {
-  body.has-custom-cursor,
+  /* Default cursor hidden so red dot acts as the custom cursor */
+  body.has-custom-cursor {
+    cursor: none !important;
+  }
+
+  /* All interactive elements show normal hand pointing cursor */
   body.has-custom-cursor a,
   body.has-custom-cursor button,
   body.has-custom-cursor .btn,
@@ -2047,17 +2025,28 @@ body.loading-lock {
   body.has-custom-cursor .case,
   body.has-custom-cursor .tab,
   body.has-custom-cursor .case-link,
+  body.has-custom-cursor .btn-details,
   body.has-custom-cursor .cert-verify-link,
   body.has-custom-cursor #backTop,
-  body.has-custom-cursor .theme-toggle {
-    cursor: none !important;
+  body.has-custom-cursor .theme-toggle,
+  body.has-custom-cursor #menuBtn,
+  body.has-custom-cursor input[type="submit"],
+  body.has-custom-cursor input[type="button"],
+  body.has-custom-cursor select,
+  body.has-custom-cursor summary {
+    cursor: pointer !important;
+  }
+
+  body.has-custom-cursor input[type="text"],
+  body.has-custom-cursor input[type="email"],
+  body.has-custom-cursor textarea {
+    cursor: text !important;
   }
 }
 
 /* Touch, Mobile & Reduced Motion Fallbacks */
 @media (max-width: 768px), (pointer: coarse), (hover: none) {
-  .custom-cursor-dot,
-  .custom-cursor-ring {
+  .custom-cursor-dot {
     display: none !important;
   }
 }

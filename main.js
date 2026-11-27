@@ -757,7 +757,7 @@ window.addEventListener('themechange', (e) => {
   }
 });
 
-/* ============ Custom Interactive Cursor (Red Dot with Outer Circle) ============ */
+/* ============ Custom Minimal Red Dot Cursor for Laptop Viewports ============ */
 function initCustomCursor() {
   if (reduceMotion) return;
 
@@ -765,18 +765,15 @@ function initCustomCursor() {
     return window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 769px)').matches;
   };
 
-  let dot = document.querySelector('.custom-cursor-dot');
-  let ring = document.querySelector('.custom-cursor-ring');
+  // Remove any legacy ring element
+  const oldRing = document.querySelector('.custom-cursor-ring');
+  if (oldRing) oldRing.remove();
 
+  let dot = document.querySelector('.custom-cursor-dot');
   if (!dot) {
     dot = document.createElement('div');
     dot.className = 'custom-cursor-dot';
     document.body.appendChild(dot);
-  }
-  if (!ring) {
-    ring = document.createElement('div');
-    ring.className = 'custom-cursor-ring';
-    document.body.appendChild(ring);
   }
 
   const updateCursorAvailability = () => {
@@ -784,7 +781,7 @@ function initCustomCursor() {
       document.body.classList.add('has-custom-cursor');
     } else {
       document.body.classList.remove('has-custom-cursor');
-      gsap.set([dot, ring], { opacity: 0 });
+      gsap.set(dot, { opacity: 0 });
     }
   };
 
@@ -792,54 +789,55 @@ function initCustomCursor() {
   window.addEventListener('resize', updateCursorAvailability);
 
   // Set initial position centered
-  gsap.set([dot, ring], { xPercent: -50, yPercent: -50, opacity: 0 });
+  gsap.set(dot, { xPercent: -50, yPercent: -50, opacity: 0 });
 
   // Ultra-responsive GSAP quickTo setters for 60-120fps hardware-accelerated tracking
   const setDotX = gsap.quickTo(dot, 'x', { duration: 0.02, ease: 'none' });
   const setDotY = gsap.quickTo(dot, 'y', { duration: 0.02, ease: 'none' });
-  const setRingX = gsap.quickTo(ring, 'x', { duration: 0.16, ease: 'power2.out' });
-  const setRingY = gsap.quickTo(ring, 'y', { duration: 0.16, ease: 'power2.out' });
 
   let isVisible = false;
+  let isOverInteractive = false;
 
   const onPointerMove = (e) => {
     if (!isLaptopOrDesktop()) return;
 
     if (!isVisible) {
       isVisible = true;
-      gsap.to([dot, ring], { opacity: 1, duration: 0.2, overwrite: 'auto' });
+      if (!isOverInteractive) {
+        gsap.to(dot, { opacity: 1, duration: 0.2, overwrite: 'auto' });
+      }
     }
 
     setDotX(e.clientX);
     setDotY(e.clientY);
-    setRingX(e.clientX);
-    setRingY(e.clientY);
   };
 
   const onMouseLeave = () => {
     isVisible = false;
-    gsap.to([dot, ring], { opacity: 0, duration: 0.25, overwrite: 'auto' });
+    gsap.to(dot, { opacity: 0, duration: 0.2, overwrite: 'auto' });
   };
 
   const onMouseEnter = () => {
     if (!isLaptopOrDesktop()) return;
     isVisible = true;
-    gsap.to([dot, ring], { opacity: 1, duration: 0.2, overwrite: 'auto' });
+    if (!isOverInteractive) {
+      gsap.to(dot, { opacity: 1, duration: 0.2, overwrite: 'auto' });
+    }
   };
 
   window.addEventListener('pointermove', onPointerMove, { passive: true });
   document.addEventListener('mouseleave', onMouseLeave);
   document.addEventListener('mouseenter', onMouseEnter);
 
-  // Interactive element hover scale states (delegated event listener)
-  const interactiveSelector = 'a, button, .btn, .project-card, .case, .tab, .case-link, .cert-verify-link, input, textarea, select, [role="button"], #backTop, .theme-toggle';
+  // Interactive selector: links, buttons, cards, controls revert to normal hand pointing cursor
+  const interactiveSelector = 'a, button, .btn, .project-card, .case, .tab, .case-link, .btn-details, .cert-verify-link, input, textarea, select, [role="button"], #backTop, .theme-toggle, #menuBtn, summary';
 
   document.addEventListener('mouseover', (e) => {
     if (!isLaptopOrDesktop()) return;
     const target = e.target.closest(interactiveSelector);
     if (target) {
-      ring.classList.add('cursor-hover');
-      dot.classList.add('cursor-hover');
+      isOverInteractive = true;
+      dot.classList.add('cursor-interactive');
     }
   });
 
@@ -847,21 +845,19 @@ function initCustomCursor() {
     if (!isLaptopOrDesktop()) return;
     const target = e.target.closest(interactiveSelector);
     if (target) {
-      ring.classList.remove('cursor-hover');
-      dot.classList.remove('cursor-hover');
+      isOverInteractive = false;
+      dot.classList.remove('cursor-interactive');
     }
   });
 
-  // Click / Press feedback
+  // Click feedback on background
   document.addEventListener('mousedown', () => {
-    if (!isLaptopOrDesktop()) return;
-    ring.classList.add('cursor-active');
+    if (!isLaptopOrDesktop() || isOverInteractive) return;
     dot.classList.add('cursor-active');
   });
 
   document.addEventListener('mouseup', () => {
     if (!isLaptopOrDesktop()) return;
-    ring.classList.remove('cursor-active');
     dot.classList.remove('cursor-active');
   });
 }
