@@ -333,11 +333,12 @@ nav.tabs a.active::after{
 /* ===== Fullscreen Overlay Navigation ===== */
 #mobileNav{
   position:fixed; inset:0; z-index:190;
-  background:rgba(0,0,0,0.96); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  background:var(--bg-nav); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
   display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
   padding:0 clamp(32px, 8vw, 120px); gap:12px;
   transform:translateY(-100%);
   pointer-events:none;
+  transition:background-color 0.35s ease;
 }
 #mobileNav.open{ pointer-events:auto; }
 
@@ -382,17 +383,43 @@ nav.tabs a.active::after{
 }
 
 .mobile-nav-footer{
-  margin-top:24px;
+  margin-top:28px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  width:100%;
+  max-width:280px;
   display:flex;
   align-items:center;
   gap:16px;
   opacity:0;
   transform:translateY(10px);
-  transition:opacity 0.4s ease 0.25s, transform 0.4s ease 0.25s;
+  transition:opacity 0.4s ease 0.25s, transform 0.4s ease 0.25s, border-color 0.35s ease;
 }
 #mobileNav.open .mobile-nav-footer{
   opacity:1;
   transform:translateY(0);
+}
+
+/* Light Theme Overrides for Fullscreen Mobile Navigation */
+[data-theme="light"] #mobileNav{
+  background:rgba(244, 244, 246, 0.98);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+}
+[data-theme="light"] #mobileNav a{
+  color:var(--dim);
+}
+[data-theme="light"] #mobileNav a:hover{
+  color:var(--ink);
+}
+[data-theme="light"] #mobileNav a span.nav-idx{
+  color:var(--faint);
+}
+[data-theme="light"] #mobileNav a.active{
+  color:var(--scarlet) !important;
+}
+[data-theme="light"] .mobile-nav-footer{
+  border-top-color:var(--line);
 }
 
 main{ position:relative; z-index:2; opacity:0; }
