@@ -1,31 +1,102 @@
+# ==============================================================================
+# Robots.txt for Jabez Gabrielraj Portfolio
+# Full access granted to all Search Engines, AI Agents, and LLM Crawlers
+# ==============================================================================
+
+# Global Default: Allow All
 User-agent: *
 Allow: /
 
+# ------------------------------------------------------------------------------
+# Explicit Permissions for AI Agents & LLM Web Browsers
+# ------------------------------------------------------------------------------
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google / Gemini / AI Overviews
 User-agent: Googlebot
 Allow: /
 
 User-agent: Googlebot-Image
 Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Microsoft / Bing / Copilot
 User-agent: Bingbot
 Allow: /
 
 User-agent: msnbot
 Allow: /
 
-User-agent: DuckDuckBot
+User-agent: BingPreview
 Allow: /
 
-User-agent: Slurp
+# Apple / Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta / Facebook AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Other Major Search Engines & Crawlers
+User-agent: DuckDuckBot
 Allow: /
 
 User-agent: Bravebot
 Allow: /
 
+User-agent: Slurp
+Allow: /
+
 User-agent: YandexBot
 Allow: /
 
-User-agent: Applebot
+User-agent: CCBot
 Allow: /
 
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Sitemaps and LLM Index
 Sitemap: https://cyber-jabez.github.io/PORTFOLIO/sitemap.xml
+Sitemap: https://cyber-jabez.github.io/sitemap.xml

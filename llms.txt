@@ -1,0 +1,56 @@
+# Jabez Gabrielraj — Portfolio & Technical Profile
+
+> Cybersecurity Analyst & Infrastructure Specialist building toward blue-team defense, cloud infrastructure hardening, Linux systems, and automated threat analysis.
+
+## Overview
+- **Name**: Jabez Gabrielraj E
+- **Role**: Cybersecurity Analyst & Infrastructure Specialist
+- **Education**: B.Tech Computer Science and Engineering, Karunya Institute of Technology and Sciences (Coimbatore, India)
+- **Primary Focus**: Blue Team Operations, Threat Detection & Forensics, Linux System Security, Cloud Infrastructure (AWS / Azure), SIEM Monitoring, Network Hardening
+- **Website**: https://cyber-jabez.github.io/PORTFOLIO/
+- **Root Domain**: https://cyber-jabez.github.io/
+- **GitHub**: https://github.com/cyber-jabez
+- **LinkedIn**: https://www.linkedin.com/in/jabez-gabrielraj
+- **Email**: 2008zpm@gmail.com
+
+---
+
+## Featured Cybersecurity Projects
+- [RazorShield AI](https://cyber-jabez.github.io/PORTFOLIO/projects.html#razorshield): AI-driven fraud detection & behavioral anomaly engine monitoring financial transaction flows in real time. Built with Python, Scikit-learn, FastAPI, and Docker.
+- [Phishing-Guard Heuristic Engine](https://cyber-jabez.github.io/PORTFOLIO/projects.html#phishing-guard): Multi-layer phishing detection system evaluating DOM tree mutation, SSL trust chains, and lexical heuristics to intercept malicious endpoints before payload execution.
+- [HNX-Vision](https://cyber-jabez.github.io/PORTFOLIO/projects.html#hnx-vision): Automated threat surface discovery and vulnerability reconnaissance dashboard aggregating asset inventory and CVE severity metrics.
+- [PassEntropy](https://cyber-jabez.github.io/PORTFOLIO/projects.html#passentropy): Shannon-entropy password strength auditor and dictionary breach verifier built for defense against credential stuffing attacks.
+
+---
+
+## Technical Skills & Defense Stack
+- **Operating Systems & Forensics**: Arch Linux, Ubuntu Server, Kali Linux, Debian, Windows Server, Volatility, Wireshark, Autopsy.
+- **Defensive & Blue Team**: Snort IDS/IPS, Wazuh SIEM, Suricata, iptables/UFW, Zeek, Splunk, MITRE ATT&CK Framework.
+- **Cloud & Infrastructure**: AWS (IAM, VPC, CloudWatch, GuardDuty), Docker, Linux Containers, NGINX, Git, Zero-Trust Architecture.
+- **Languages & Scripting**: Python, Bash Shell Scripting, C/C++, JavaScript, SQL.
+- **Network Security**: TCP/IP stack analysis, VLAN segmentation, TLS 1.3/SSL analysis, packet capture analysis, DNSSEC.
+
+---
+
+## Professional Experience
+- **Quantis Sphere** — Lead Infrastructure Security Analyst: Hardened Linux server infrastructure, designed automated log collection pipelines, and conducted zero-trust access control audits.
+- **CIRA (Cyber Incident Response & Audit)** — Technical Coordinator: Coordinated CTF forensics exercises, threat intelligence analysis workshops, and vulnerability research seminars.
+- **IEEE Computer Society**: Technical member participating in software security symposiums and open-source infrastructure defense initiatives.
+- **ZyrOps**: Contributed to cloud automation, Docker container isolation benchmarks, and secure deployment pipelines.
+
+---
+
+## Verified Credentials & Certifications
+- Google Cybersecurity Professional Certificate
+- ISC2 Certified in Cybersecurity (CC) Candidate
+- Cisco Networking Basics & Defense
+- Certified Ethical Hacker (Practical) Studies
+
+---
+
+## Site Navigation Routes
+- [Home Base](https://cyber-jabez.github.io/PORTFOLIO/index.html)
+- [Projects Reel](https://cyber-jabez.github.io/PORTFOLIO/projects.html)
+- [Experience Log](https://cyber-jabez.github.io/PORTFOLIO/experience.html)
+- [Skills Matrix](https://cyber-jabez.github.io/PORTFOLIO/skills.html)
+- [Direct Contact & Dispatch](https://cyber-jabez.github.io/PORTFOLIO/contact.html)
