@@ -4,13 +4,22 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+
 User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
 Allow: /
 
 User-agent: DuckDuckBot
 Allow: /
 
 User-agent: Slurp
+Allow: /
+
+User-agent: Bravebot
 Allow: /
 
 User-agent: YandexBot
