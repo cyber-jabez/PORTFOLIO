@@ -873,14 +873,14 @@ function initDynamicGreeting() {
         nav: 'Good morning',
         period: 'morning'
       };
-    } else if (hour >= 12 && hour < 17) {
+    } else if (hour >= 12 && hour < 16) {
       return {
         greeting: 'Good afternoon',
         preloader: 'GOOD AFTERNOON',
         nav: 'Good afternoon',
         period: 'afternoon'
       };
-    } else if (hour >= 17 && hour < 22) {
+    } else if (hour >= 16 && hour < 19) {
       return {
         greeting: 'Good evening',
         preloader: 'GOOD EVENING',
