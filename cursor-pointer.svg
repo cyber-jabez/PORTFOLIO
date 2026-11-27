@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <!-- Scarlet Red Hand Pointer Cursor with Crisp Contrast Stroke -->
+  <path d="M7 1.5C5.9 1.5 5 2.4 5 3.5V12.2L3.6 10.9C2.8 10.1 1.5 10.2 0.8 11C0 11.8 0.1 13.1 0.9 13.9L6.2 18.8C7.6 20.1 9.4 20.9 11.4 20.9H13.5C17.1 20.9 20 18 20 14.4V10.2C20 9.1 19.1 8.2 18 8.2C17.7 8.2 17.4 8.3 17.2 8.4C16.8 7.5 16 6.9 15 6.9C14.7 6.9 14.4 7 14.2 7.1C13.8 6.2 13 5.6 12 5.6C11.6 5.6 11.2 5.7 10.9 5.9V3.5C10.9 2.4 10 1.5 8.9 1.5H7Z" fill="#E8271A" stroke="#000000" stroke-width="1.4" stroke-linejoin="round"/>
+  <!-- Finger division lines -->
+  <path d="M10.9 5.9V13" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+  <path d="M14.2 7.1V13.5" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+  <path d="M17.2 8.4V14" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+  <path d="M5 12.2L8.5 15.5" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+</svg>
