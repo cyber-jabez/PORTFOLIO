@@ -17,6 +17,16 @@
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#000000">
 
+  <!-- Critical Inline Styles to Guarantee Immediate Visibility -->
+  <style>
+    .error-page main,
+    main.error-hero,
+    .error-hero {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+  </style>
+
   <!-- Favicons & Manifest -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
@@ -30,7 +40,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3.3">
+  <link rel="stylesheet" href="styles.css?v=3.4">
   <script>
     (function () { try { var s = localStorage.getItem('portfolio-theme'); var t = s || 'dark'; document.documentElement.setAttribute('data-theme', t); document.documentElement.style.colorScheme = t; } catch (e) { } })();
   </script>
@@ -90,7 +100,7 @@
   <main class="error-hero">
     <div class="error-status-pill">
       <span class="status-indicator"></span>
-      <span>STATUS 404 // ROUTE_NOT_FOUND</span>
+      <span>STATUS 404 // ZERO-TRUST FIREWALL INTERCEPT</span>
     </div>
 
     <div class="error-code-wrapper">
@@ -99,7 +109,7 @@
 
     <h2 class="error-title">Target Endpoint Unreachable</h2>
     <p class="error-desc">
-      The requested route does not exist in the active routing table, has been decommissioned, or is gated behind zero-trust network boundaries.
+      The requested URI does not exist in the routing registry, was relocated, or is restricted behind active blue-team perimeter filters. Full telemetry diagnostic and verified failover routes are listed below.
     </p>
 
     <!-- Diagnostic Telemetry Card -->
@@ -112,6 +122,10 @@
       </div>
       <div class="error-terminal-body">
         <div class="error-terminal-row">
+          <span class="error-terminal-key">INCIDENT_ID:</span>
+          <span class="error-terminal-val">SEC-ERR-404-NXDOMAIN</span>
+        </div>
+        <div class="error-terminal-row">
           <span class="error-terminal-key">HOST:</span>
           <span class="error-terminal-val" id="diagHost">cyber-jabez.github.io</span>
         </div>
@@ -120,8 +134,16 @@
           <span class="error-terminal-val scarlet" id="diagPath">/404.html</span>
         </div>
         <div class="error-terminal-row">
+          <span class="error-terminal-key">EVENT_TYPE:</span>
+          <span class="error-terminal-val scarlet">PACKET_DROP // UNMAPPED_ENDPOINT</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">SECURITY_ZONE:</span>
+          <span class="error-terminal-val">BLUE_TEAM_DEFENSE // ZERO_TRUST</span>
+        </div>
+        <div class="error-terminal-row">
           <span class="error-terminal-key">REFERRER:</span>
-          <span class="error-terminal-val" id="diagReferrer">DIRECT_ACCESS</span>
+          <span class="error-terminal-val" id="diagReferrer">DIRECT_TRAFFIC</span>
         </div>
         <div class="error-terminal-row">
           <span class="error-terminal-key">PROTOCOL:</span>
@@ -133,8 +155,52 @@
         </div>
         <div class="error-terminal-row">
           <span class="error-terminal-key">ACTION:</span>
-          <span class="error-terminal-val scarlet">RECOMMENDED_FAILOVER_TO_HOME</span>
+          <span class="error-terminal-val scarlet">RECOMMENDED_FAILOVER_TO_ACTIVE_MODULES</span>
         </div>
+      </div>
+    </div>
+
+    <!-- Verified Failover Pathways Grid -->
+    <div class="error-failover-section">
+      <div class="error-failover-header">
+        <span>Verified Failover Modules</span>
+      </div>
+      <div class="error-failover-grid">
+        <a href="index.html#projects" class="error-failover-card">
+          <div class="error-card-tag">
+            <span>Module 01</span>
+            <span>↗</span>
+          </div>
+          <div class="error-card-title">Security Projects & Labs</div>
+          <div class="error-card-desc">RazorShield AI fraud engine, Phishing-Guard heuristic analyzer, HNX-Vision, and password entropy cracker.</div>
+        </a>
+
+        <a href="index.html#experience" class="error-failover-card">
+          <div class="error-card-tag">
+            <span>Module 02</span>
+            <span>↗</span>
+          </div>
+          <div class="error-card-title">Experience & Credentials</div>
+          <div class="error-card-desc">Quantis Sphere infrastructure security, CIRA Technical Coordinator, IEEE Computer Society, and ZyrOps.</div>
+        </a>
+
+        <a href="index.html#skills" class="error-failover-card">
+          <div class="error-card-tag">
+            <span>Module 03</span>
+            <span>↗</span>
+          </div>
+          <div class="error-card-title">Defensive Systems & Stack</div>
+          <div class="error-card-desc">Linux system defense, threat modeling, cloud infrastructure hardening, Python security tooling, and CTF forensics.</div>
+        </a>
+
+        <a href="index.html#contact" class="error-failover-card">
+          <div class="error-card-tag">
+            <span>Module 04</span>
+            <span>↗</span>
+          </div>
+          <div class="error-card-title">Encrypted Dispatch / Contact</div>
+          <div class="error-card-desc">Open channel for technical discussions, infrastructure audits, internships, and security collaboration.</div>
+        </a>
       </div>
     </div>
 
