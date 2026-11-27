@@ -3138,3 +3138,102 @@ body.loading-lock {
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   Live IST Time Widget (Header, Hero & Mobile)
+   ========================================================================== */
+.time-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  height: 36px;
+  user-select: none;
+  -webkit-user-select: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.time-widget:hover {
+  border-color: rgba(232, 39, 26, 0.45);
+  box-shadow: 0 0 16px rgba(232, 39, 26, 0.12);
+}
+
+.time-widget-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #27C93F;
+  box-shadow: 0 0 8px rgba(39, 201, 63, 0.85);
+  animation: pulseGreen 2s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+.time-widget-label {
+  font-weight: 700;
+  color: var(--scarlet);
+  letter-spacing: 0.12em;
+}
+
+.time-widget-val {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 58px;
+}
+
+/* Hero Clock Tag */
+.hero-clock-tag {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mobile Nav Clock Widget */
+.mobile-time-widget {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-right: auto;
+}
+
+.mobile-time-widget .live-clock {
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 680px) {
+  .time-widget {
+    padding: 5px 10px;
+    font-size: 10px;
+    height: 32px;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .time-widget {
+    padding: 4px 8px;
+    font-size: 9.5px;
+  }
+  .time-widget-val {
+    min-width: auto;
+  }
+}

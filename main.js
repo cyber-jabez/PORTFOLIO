@@ -964,37 +964,66 @@ function initBlurTypography() {
   }
 }
 
+/* ============ Live IST Time Widget ============ */
+function initLiveIstClock() {
+  const clockElements = document.querySelectorAll('.live-clock, #liveIstClock, #headerIstClock, #heroIstClock, #mobileIstClock');
+  if (!clockElements.length) return;
+
+  const updateClock = () => {
+    let fullTime = '';
+    let shortTime = '';
+    let rawTime = '';
+
+    try {
+      const now = new Date();
+      rawTime = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      }).format(now);
+
+      shortTime = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(now);
+
+      fullTime = `${rawTime} IST`;
+    } catch (e) {
+      const d = new Date();
+      const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+      const ist = new Date(utc + (3600000 * 5.5));
+      const pad = (n) => String(n).padStart(2, '0');
+      rawTime = `${pad(ist.getHours())}:${pad(ist.getMinutes())}:${pad(ist.getSeconds())}`;
+      shortTime = `${pad(ist.getHours())}:${pad(ist.getMinutes())}`;
+      fullTime = `${rawTime} IST`;
+    }
+
+    clockElements.forEach(el => {
+      const format = el.dataset.format;
+      if (format === 'raw') {
+        el.textContent = rawTime;
+      } else if (format === 'short') {
+        el.textContent = `${shortTime} IST`;
+      } else {
+        el.textContent = fullTime;
+      }
+    });
+  };
+
+  updateClock();
+  setInterval(updateClock, 1000);
+}
+
 /* ============ Modern Studio Giant Name Footer (Reflexlabs & ReactBits Aesthetics) ============ */
 function initModernFooter() {
   const footer = document.querySelector('.site-footer');
   if (!footer) return;
 
-  // 1. Live Coimbatore IST Clock (HH:MM:SS IST)
-  const clockEl = document.getElementById('liveIstClock');
-  if (clockEl) {
-    const updateClock = () => {
-      try {
-        const istTime = new Intl.DateTimeFormat('en-GB', {
-          timeZone: 'Asia/Kolkata',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false
-        }).format(new Date());
-        clockEl.textContent = `${istTime} IST`;
-      } catch (e) {
-        const d = new Date();
-        const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-        const ist = new Date(utc + (3600000 * 5.5));
-        const pad = (n) => String(n).padStart(2, '0');
-        clockEl.textContent = `${pad(ist.getHours())}:${pad(ist.getMinutes())}:${pad(ist.getSeconds())} IST`;
-      }
-    };
-    updateClock();
-    setInterval(updateClock, 1000);
-  }
-
-  // 2. Interactive Action Pill / Back to Top
+  // 1. Interactive Action Pill / Back to Top
   const actionPill = document.getElementById('footerActionPill');
   if (actionPill) {
     actionPill.addEventListener('click', (e) => {
@@ -1183,6 +1212,7 @@ function initPreloader(onComplete) {
 /* ============ Main Boot Sequence ============ */
 function boot() {
   initDynamicGreeting();
+  initLiveIstClock();
   const main = document.querySelector('main');
   if (main) gsap.set(main, { opacity: 1 });
 
