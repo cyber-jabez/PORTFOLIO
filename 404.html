@@ -19,15 +19,21 @@
 
   <!-- Critical Inline Styles to Guarantee Immediate Visibility -->
   <style>
-    .error-page {
+    body.error-page {
       min-height: 100vh;
       min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--bg, #08090C);
+      color: var(--ink, #F5F3EF);
     }
     .error-page main,
     main.error-hero,
     .error-hero {
       opacity: 1 !important;
       visibility: visible !important;
+      display: flex !important;
     }
   </style>
 
