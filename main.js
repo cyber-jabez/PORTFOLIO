@@ -1107,6 +1107,9 @@ function initPreloader(onComplete) {
       setTimeout(dismiss, 140);
     }
   }, '-=0.15');
+
+  // Failsafe auto-dismiss after 1.6s for headless AI crawlers, bots, or slow environments
+  setTimeout(dismiss, 1600);
 }
 
 /* ============ Main Boot Sequence ============ */
