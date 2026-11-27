@@ -862,6 +862,74 @@ function initCustomCursor() {
   });
 }
 
+/* ============ Dynamic Time-Based Greeting ============ */
+function initDynamicGreeting() {
+  const getGreetingData = () => {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) {
+      return {
+        greeting: 'Good morning',
+        preloader: 'GOOD MORNING',
+        nav: 'Good morning',
+        period: 'morning'
+      };
+    } else if (hour >= 12 && hour < 17) {
+      return {
+        greeting: 'Good afternoon',
+        preloader: 'GOOD AFTERNOON',
+        nav: 'Good afternoon',
+        period: 'afternoon'
+      };
+    } else if (hour >= 17 && hour < 22) {
+      return {
+        greeting: 'Good evening',
+        preloader: 'GOOD EVENING',
+        nav: 'Good evening',
+        period: 'evening'
+      };
+    } else {
+      return {
+        greeting: 'Good night',
+        preloader: 'GOOD NIGHT',
+        nav: 'Good night',
+        period: 'night'
+      };
+    }
+  };
+
+  const applyGreeting = () => {
+    const { greeting, preloader, nav } = getGreetingData();
+
+    // 1. Hero Eyebrow Greeting
+    const heroGreetingEl = document.getElementById('heroGreeting');
+    if (heroGreetingEl) {
+      heroGreetingEl.textContent = greeting;
+    }
+
+    // 2. Preloader Subtitle
+    const preloaderGreetingEl = document.getElementById('preloaderGreeting');
+    if (preloaderGreetingEl) {
+      preloaderGreetingEl.textContent = preloader;
+    }
+
+    // 3. Mobile Navigation Header
+    const navGreetingEl = document.getElementById('navGreeting');
+    if (navGreetingEl) {
+      navGreetingEl.textContent = nav;
+    }
+
+    // 4. Contact Closing Line Greeting
+    const contactGreetingEl = document.getElementById('contactGreeting');
+    if (contactGreetingEl) {
+      contactGreetingEl.textContent = `${greeting} — `;
+    }
+  };
+
+  applyGreeting();
+  // Auto-refresh every minute to transition smoothly across hour boundaries
+  setInterval(applyGreeting, 60000);
+}
+
 /* ============ Magnetic Buttons ============ */
 function initMagneticButtons() {
   if (reduceMotion) return;
@@ -1114,6 +1182,7 @@ function initPreloader(onComplete) {
 
 /* ============ Main Boot Sequence ============ */
 function boot() {
+  initDynamicGreeting();
   const main = document.querySelector('main');
   if (main) gsap.set(main, { opacity: 1 });
 

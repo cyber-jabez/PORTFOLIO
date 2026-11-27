@@ -172,7 +172,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3.9">
+  <link rel="stylesheet" href="styles.css?v=4.0">
   <script>
     (function () { try { var s = localStorage.getItem('portfolio-theme'); var t = s || 'dark'; document.documentElement.setAttribute('data-theme', t); document.documentElement.style.colorScheme = t; } catch (e) { } })();
   </script>
@@ -199,7 +199,7 @@
 
       <div class="preloader-telemetry">
         <div class="preloader-title">JABEZ GABRIELRAJ</div>
-        <div class="preloader-subtitle">SYSTEM // INITIALIZING SECURE ENVIRONMENT</div>
+        <div class="preloader-subtitle"><span id="preloaderGreeting">SYSTEM</span> // INITIALIZING SECURE ENVIRONMENT</div>
       </div>
 
       <div class="preloader-meter">
@@ -297,7 +297,7 @@
 
   <!-- Mobile Overlay Navigation -->
   <nav id="mobileNav">
-    <div class="nav-eyebrow">Index // Navigation</div>
+    <div class="nav-eyebrow"><span id="navGreeting">Index</span> // Navigation</div>
     <a href="#hero" class="active"><span class="nav-idx">01</span>Home</a>
     <a href="#profile"><span class="nav-idx">02</span>About</a>
     <a href="#experience"><span class="nav-idx">03</span>Experience</a>
@@ -330,7 +330,12 @@
     <section id="hero">
       <div id="heroStripes"></div>
       <div class="hero-inner">
-        <div class="eyebrow"><span class="dot"></span>Cybersecurity Analyst — Coimbatore, India</div>
+        <div class="eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="dynamic-greeting" id="heroGreeting">Welcome</span>
+          <span class="eyebrow-sep" aria-hidden="true">//</span>
+          <span>Cybersecurity Analyst — Coimbatore, India</span>
+        </div>
         <h1 class="hero-name">
           <span class="word-mask"><span>Jabez</span></span>
           <span class="word-mask"><span>Gabrielraj</span></span>
@@ -823,7 +828,7 @@
         <h2 class="chapter-title" data-split-lines>Let's<br>talk</h2>
         <div class="chapter-rule"></div>
       </div>
-      <p class="closing-line">Open to internships, campus roles, and <em>security-adjacent</em> collaborations.</p>
+      <p class="closing-line"><span class="contact-greeting" id="contactGreeting"></span>Open to internships, campus roles, and <em>security-adjacent</em> collaborations.</p>
       <div class="contact-grid reveal">
         <a class="contact-cell" href="mailto:2008zpm@gmail.com">
           <div class="k">Email</div>
@@ -1001,7 +1006,7 @@
   <script src="grainient.js"></script>
   <script src="blurText.js"></script>
   <script src="theme.js"></script>
-  <script src="main.js?v=3.9"></script>
+  <script src="main.js?v=4.0"></script>
 </body>
 
 </html>

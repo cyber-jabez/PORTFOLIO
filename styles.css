@@ -742,10 +742,35 @@ section {
   text-transform: uppercase;
   color: var(--dim);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 8px 10px;
   margin-bottom: 24px;
-  overflow: hidden;
+}
+
+.dynamic-greeting {
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}
+
+.eyebrow-sep {
+  color: var(--scarlet);
+  opacity: 0.7;
+  font-weight: 400;
+  user-select: none;
+}
+
+.contact-greeting {
+  color: var(--scarlet);
+  font-weight: 600;
+  font-style: normal;
+  display: inline-block;
+  margin-right: 6px;
 }
 
 .dot {
