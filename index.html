@@ -166,13 +166,52 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3.3">
+  <link rel="stylesheet" href="styles.css?v=3.6">
   <script>
     (function () { try { var s = localStorage.getItem('portfolio-theme'); var t = s || 'dark'; document.documentElement.setAttribute('data-theme', t); document.documentElement.style.colorScheme = t; } catch (e) { } })();
   </script>
 </head>
 
 <body>
+
+  <!-- Minimal Branded Intro Preloader -->
+  <div id="preloader" class="preloader-overlay" aria-hidden="true">
+    <div class="preloader-content">
+      <div class="preloader-mark-wrapper">
+        <div class="preloader-mark-glow"></div>
+        <svg class="preloader-shield" viewBox="0 0 512 512" width="68" height="68" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="512" height="512" rx="110" fill="#07070b" />
+          <rect width="504" height="504" x="4" y="4" rx="106" fill="none" stroke="#E8271A" stroke-width="8" stroke-opacity="0.6" />
+          <path d="M 40 100 L 40 40 L 100 40" fill="none" stroke="#E8271A" stroke-width="14" stroke-linecap="round" />
+          <path d="M 472 100 L 472 40 L 412 40" fill="none" stroke="#E8271A" stroke-width="14" stroke-linecap="round" />
+          <path d="M 40 412 L 40 472 L 100 472" fill="none" stroke="#E8271A" stroke-width="14" stroke-linecap="round" />
+          <path d="M 472 412 L 472 472 L 412 472" fill="none" stroke="#E8271A" stroke-width="14" stroke-linecap="round" />
+          <polygon points="256,76 414,168 414,348 256,440 98,348 98,168" fill="rgba(232, 39, 26, 0.08)" stroke="#E8271A" stroke-width="8" />
+          <text x="256" y="295" font-family="'JetBrains Mono', monospace" font-size="140" font-weight="900" text-anchor="middle" fill="#FFFFFF">JG<tspan fill="#E8271A">R</tspan></text>
+        </svg>
+      </div>
+
+      <div class="preloader-telemetry">
+        <div class="preloader-title">JABEZ GABRIELRAJ</div>
+        <div class="preloader-subtitle">SYSTEM // INITIALIZING SECURE ENVIRONMENT</div>
+      </div>
+
+      <div class="preloader-meter">
+        <div class="preloader-bar">
+          <div class="preloader-fill" id="preloaderFill"></div>
+        </div>
+        <div class="preloader-meta">
+          <span class="preloader-status">
+            <span class="preloader-dot"></span>
+            <span id="preloaderStatusText">INITIALIZING ENCLAVE</span>
+          </span>
+          <span class="preloader-pct" id="preloaderPct">0%</span>
+        </div>
+      </div>
+
+      <div class="preloader-skip-hint">Click anywhere or press <kbd>ESC</kbd> to skip</div>
+    </div>
+  </div>
 
   <div id="pageWipe"></div>
   <div id="pageWipeLabel"></div>

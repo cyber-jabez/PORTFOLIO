@@ -853,6 +853,99 @@ function initModernFooter() {
   }
 }
 
+/* ============ Minimal Branded Intro Preloader ============ */
+function initPreloader(onComplete) {
+  const preloader = document.getElementById('preloader');
+  if (!preloader) {
+    if (onComplete) onComplete();
+    return;
+  }
+
+  // If user prefers reduced motion, skip intro animation immediately
+  if (reduceMotion) {
+    preloader.style.display = 'none';
+    if (onComplete) onComplete();
+    return;
+  }
+
+  // Lock scrolling during preloader intro
+  document.body.classList.add('loading-lock');
+  if (lenis) lenis.stop();
+
+  const fill = document.getElementById('preloaderFill');
+  const pctEl = document.getElementById('preloaderPct');
+  const statusEl = document.getElementById('preloaderStatusText');
+  const content = preloader.querySelector('.preloader-content');
+  const shield = preloader.querySelector('.preloader-shield');
+
+  let isDismissed = false;
+  const dismiss = () => {
+    if (isDismissed) return;
+    isDismissed = true;
+
+    // Smooth curtain lift animation
+    const exitTl = gsap.timeline({
+      onComplete: () => {
+        document.body.classList.remove('loading-lock');
+        preloader.style.display = 'none';
+        if (lenis) lenis.start();
+        ScrollTrigger.refresh();
+      }
+    });
+
+    exitTl
+      .to(content, { opacity: 0, y: -16, duration: 0.3, ease: 'power2.in' })
+      .to(preloader, { yPercent: -100, duration: 0.65, ease: 'power4.inOut' }, '-=0.08')
+      .add(() => {
+        if (onComplete) onComplete();
+      }, '-=0.45');
+  };
+
+  // Skip instantly on click or keyboard press
+  preloader.addEventListener('click', dismiss);
+  const handleKeySkip = (e) => {
+    if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
+      window.removeEventListener('keydown', handleKeySkip);
+      dismiss();
+    }
+  };
+  window.addEventListener('keydown', handleKeySkip, { once: true });
+
+  // Progress counter and draw-in animation
+  const progressObj = { value: 0 };
+  const introTl = gsap.timeline();
+
+  if (shield) {
+    introTl.fromTo(shield,
+      { scale: 0.82, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.45, ease: 'back.out(1.5)' }
+    );
+  }
+
+  introTl.to(progressObj, {
+    value: 100,
+    duration: 1.05,
+    ease: 'power2.inOut',
+    onUpdate: () => {
+      const val = Math.round(progressObj.value);
+      if (fill) fill.style.width = val + '%';
+      if (pctEl) pctEl.textContent = val + '%';
+      if (statusEl) {
+        if (val < 40) {
+          statusEl.textContent = 'INITIALIZING ENCLAVE';
+        } else if (val < 85) {
+          statusEl.textContent = 'SECURING PERIMETER';
+        } else {
+          statusEl.textContent = 'SECURITY CLEARED';
+        }
+      }
+    },
+    onComplete: () => {
+      setTimeout(dismiss, 140);
+    }
+  }, '-=0.15');
+}
+
 /* ============ Main Boot Sequence ============ */
 function boot() {
   const main = document.querySelector('main');
@@ -867,7 +960,9 @@ function boot() {
   initMagneticButtons();
   initModal();
   initModernFooter();
-  pageIntro();
+  initPreloader(() => {
+    pageIntro();
+  });
 
   // Refresh ScrollTrigger once fonts load or layout stabilizes
   if (document.fonts && document.fonts.ready) {
