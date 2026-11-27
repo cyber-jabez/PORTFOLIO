@@ -670,7 +670,8 @@ section{
   flex-shrink:0;
   position:relative;
 }
-.project-card{
+.project-card,
+.case {
   background:var(--bg-card);
   backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px);
@@ -679,21 +680,109 @@ section{
   border-radius:4px;
   box-shadow:var(--card-shadow);
   transition:border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  position:relative;
+  overflow:hidden;
+  --mouse-x:-500px;
+  --mouse-y:-500px;
+  --spotlight-opacity:0;
+}
+.project-card{
   height:100%;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
 }
-.project-card:hover{
+.project-card:hover,
+.case:hover{
   border-color:rgba(232,39,26,0.5);
   box-shadow:0 16px 40px var(--scarlet-dim);
   transform:translateY(-4px);
 }
-.project-card .case-index{ font-family:var(--mono); font-size:11px; letter-spacing:0.15em; color:var(--scarlet); text-transform:uppercase; margin-bottom:12px; }
-.project-card .case-title{ font-family:var(--display); font-size:clamp(1.6rem, 2vw, 2.1rem); font-weight:700; line-height:1.15; letter-spacing:-0.01em; margin-bottom:14px; }
-.project-card .case-body{ color:var(--dim); font-size:0.98rem; line-height:1.62; margin-bottom:22px; max-width:680px; }
-.project-card .case-stack{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
-.project-card .case-actions{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding-top:20px; border-top:1px solid var(--line); }
+
+/* ===== Card Spotlight: Soft Red Radial Glow Following Pointer ===== */
+.project-card,
+.case,
+[data-spotlight] {
+  position: relative;
+  overflow: hidden;
+  --mouse-x: -500px;
+  --mouse-y: -500px;
+  --spotlight-opacity: 0;
+}
+
+.project-card > *,
+.case > *,
+[data-spotlight] > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Surface Radial Spotlight Glow */
+.project-card::before,
+.case::before,
+[data-spotlight]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    520px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(232, 39, 26, 0.15),
+    transparent 60%
+  );
+  opacity: var(--spotlight-opacity, 0);
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme="light"] .project-card::before,
+[data-theme="light"] .case::before,
+[data-theme="light"] [data-spotlight]::before {
+  background: radial-gradient(
+    520px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(232, 39, 26, 0.08),
+    transparent 60%
+  );
+}
+
+/* Focused Radial Border Glow */
+.project-card::after,
+.case::after,
+[data-spotlight]::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(232, 39, 26, 0.65),
+    transparent 45%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: var(--spotlight-opacity, 0);
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme="light"] .project-card::after,
+[data-theme="light"] .case::after,
+[data-theme="light"] [data-spotlight]::after {
+  background: radial-gradient(
+    380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(232, 39, 26, 0.45),
+    transparent 45%
+  );
+}
+.project-card .case-index, .case .case-index{ font-family:var(--mono); font-size:11px; letter-spacing:0.15em; color:var(--scarlet); text-transform:uppercase; margin-bottom:12px; }
+.project-card .case-title, .case .case-title{ font-family:var(--display); font-size:clamp(1.6rem, 2vw, 2.1rem); font-weight:700; line-height:1.15; letter-spacing:-0.01em; margin-bottom:14px; }
+.project-card .case-body, .case .case-body{ color:var(--dim); font-size:0.98rem; line-height:1.62; margin-bottom:22px; max-width:680px; }
+.project-card .case-stack, .case .case-stack{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+.project-card .case-actions, .case .case-actions{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding-top:20px; border-top:1px solid var(--line); }
 .case-link{
   display:inline-flex; align-items:center; gap:8px;
   font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;

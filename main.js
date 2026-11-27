@@ -853,6 +853,47 @@ function initModernFooter() {
   }
 }
 
+/* ============ Card Spotlight: Soft Red Radial Glow Following Pointer ============ */
+function initCardSpotlight() {
+  const cards = document.querySelectorAll('.project-card, .case, [data-spotlight]');
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    let rafId = null;
+
+    const onPointerMove = (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+        card.style.setProperty('--spotlight-opacity', '1');
+      });
+    };
+
+    const onPointerEnter = (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+      card.style.setProperty('--spotlight-opacity', '1');
+    };
+
+    const onPointerLeave = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      card.style.setProperty('--spotlight-opacity', '0');
+    };
+
+    card.addEventListener('pointermove', onPointerMove, { passive: true });
+    card.addEventListener('pointerenter', onPointerEnter, { passive: true });
+    card.addEventListener('pointerleave', onPointerLeave, { passive: true });
+  });
+}
+
 /* ============ Minimal Branded Intro Preloader ============ */
 function initPreloader(onComplete) {
   const preloader = document.getElementById('preloader');
@@ -958,6 +999,7 @@ function boot() {
   initSectionPinning();
   initBlurTypography();
   initMagneticButtons();
+  initCardSpotlight();
   initModal();
   initModernFooter();
   initPreloader(() => {
