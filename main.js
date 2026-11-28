@@ -720,26 +720,42 @@ function getGrainientConfig(theme) {
 
 function initHeroGrainient() {
   const container = document.getElementById('heroGrainient');
-  if (!container || typeof initGrainient !== 'function') return null;
+  if (!container) return null;
+  if (typeof initGrainient !== 'function') {
+    container.classList.add('grainient-fallback');
+    return null;
+  }
 
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
   const cfg = getGrainientConfig(currentTheme);
 
-  heroGrainientInstance = initGrainient(container, {
-    colors: cfg.colors,
-    lightMode: cfg.lightMode,
-    type: 'linear',
-    angle: 55,
-    flow: 0.8,
-    silk: 0.4,
-    grainAmount: 0,
-    grainSize: 1.0,
-    grainAnimated: false,
-    speed: 0.9,
-    interactive: true,
-    clickSwirl: true,
-    intro: true
-  });
+  try {
+    heroGrainientInstance = initGrainient(container, {
+      colors: cfg.colors,
+      lightMode: cfg.lightMode,
+      type: 'linear',
+      angle: 55,
+      flow: 0.8,
+      silk: 0.4,
+      grainAmount: 0,
+      grainSize: 1.0,
+      grainAnimated: false,
+      speed: 0.9,
+      interactive: true,
+      clickSwirl: true,
+      intro: true
+    });
+  } catch (err) {
+    console.warn('[Grainient] WebGL init error, using CSS gradient fallback:', err);
+    heroGrainientInstance = null;
+  }
+
+  if (!heroGrainientInstance) {
+    container.classList.add('grainient-fallback');
+  } else {
+    container.classList.remove('grainient-fallback');
+    container.classList.add('grainient-active');
+  }
 
   window.heroGrainientInstance = heroGrainientInstance;
   return heroGrainientInstance;

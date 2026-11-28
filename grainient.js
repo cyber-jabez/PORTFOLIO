@@ -299,13 +299,20 @@ void main() {
     });
 
     if (!gl) {
-      console.warn('WebGL2 not supported on this device/browser for Grainient.');
+      console.warn('WebGL2 not supported on this device/browser for Grainient. Activating CSS fallback.');
+      if (canvas.parentNode) canvas.remove();
+      container.classList.add('grainient-fallback');
       return null;
     }
 
     const field = link(gl, FIELD);
     const composite = link(gl, COMPOSITE);
-    if (!field || !composite) return null;
+    if (!field || !composite) {
+      console.warn('Shader link failed for Grainient. Activating CSS fallback.');
+      if (canvas.parentNode) canvas.remove();
+      container.classList.add('grainient-fallback');
+      return null;
+    }
 
     const fu = field.uniforms;
     const cu = composite.uniforms;
