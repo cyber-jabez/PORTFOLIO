@@ -61,6 +61,13 @@
   padding: 0;
 }
 
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
 html {
   background: var(--bg);
 }
@@ -836,6 +843,8 @@ section {
   gap: 10px;
   overflow: hidden;
   isolation: isolate;
+  cursor: pointer;
+  border: 1px solid transparent;
 }
 
 .btn svg {
@@ -3233,6 +3242,7 @@ body.loading-lock {
     padding: 4px 8px;
     font-size: 9.5px;
   }
+
   .time-widget-val {
     min-width: auto;
   }
@@ -3243,6 +3253,10 @@ body.loading-lock {
    ========================================================================== */
 .offline-page {
   background-color: var(--bg);
+}
+
+.offline-hero {
+  padding: clamp(90px, 12vh, 130px) clamp(20px, 4vw, 40px) clamp(40px, 6vh, 60px);
 }
 
 .offline-icon-wrapper {
@@ -3263,7 +3277,8 @@ body.loading-lock {
 }
 
 .radar-circle {
-  transform-origin: 50px 50px;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .radar-c1 {
@@ -3279,9 +3294,26 @@ body.loading-lock {
 }
 
 @keyframes radarPulse {
-  0% { transform: scale(0.92); opacity: 0.2; }
-  50% { transform: scale(1.06); opacity: 0.75; }
-  100% { transform: scale(0.92); opacity: 0.2; }
+  0% {
+    transform: scale(0.92);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: scale(1.06);
+    opacity: 0.75;
+  }
+
+  100% {
+    transform: scale(0.92);
+    opacity: 0.2;
+  }
+}
+
+.offline-glitch {
+  font-size: clamp(3.2rem, 9.5vw, 6.8rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
 }
 
 .offline-status-pill.online {
@@ -3303,6 +3335,11 @@ body.loading-lock {
   gap: 10px;
   cursor: pointer;
   position: relative;
+  border: 1px solid transparent;
+  outline: none;
+  font-family: inherit;
+  min-height: 46px;
+  padding: 12px 24px;
   transition: background-color 0.25s, border-color 0.25s, transform 0.15s, box-shadow 0.25s;
 }
 
@@ -3324,20 +3361,46 @@ body.loading-lock {
   box-shadow: 0 0 24px rgba(39, 201, 63, 0.4) !important;
 }
 
+.retry-btn.connected::before {
+  display: none !important;
+}
+
 .retry-btn.failed {
   animation: btnShake 0.4s ease-in-out;
   border-color: var(--scarlet) !important;
 }
 
+.retry-btn:focus-visible {
+  outline: 2px solid var(--scarlet);
+  outline-offset: 3px;
+}
+
 @keyframes spinIcon {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes btnShake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-6px); }
-  40%, 80% { transform: translateX(6px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
 }
 
 /* Floating Network Resilience HUD (Global In-Page Monitor) */
@@ -3394,6 +3457,8 @@ body.loading-lock {
 
 .network-hud-text {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .network-hud-retry {
@@ -3406,6 +3471,7 @@ body.loading-lock {
   padding: 4px 10px;
   border-radius: 6px;
   cursor: pointer;
+  flex-shrink: 0;
   transition: background 0.2s, border-color 0.2s, transform 0.15s;
 }
 
@@ -3435,9 +3501,18 @@ body.loading-lock {
 
 @media (max-width: 600px) {
   .offline-icon-wrapper {
-    width: 72px;
-    height: 72px;
-    margin-bottom: 16px;
+    width: 68px;
+    height: 68px;
+    margin-bottom: 14px;
+  }
+
+  .offline-glitch {
+    font-size: clamp(2.4rem, 12vw, 3.8rem);
+    letter-spacing: -0.02em;
+  }
+
+  .offline-hero {
+    padding: clamp(76px, 10vh, 92px) 16px 28px;
   }
 
   .network-hud {
@@ -3450,4 +3525,3 @@ body.loading-lock {
     justify-content: space-between;
   }
 }
-
