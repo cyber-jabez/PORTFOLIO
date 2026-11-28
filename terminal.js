@@ -212,10 +212,11 @@ Tip: Try typing 'matrix' for cyber visualizer, or 'theme light' / 'theme dark' t
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-label', 'Interactive Security Terminal');
     modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('data-lenis-prevent', 'true');
 
     modal.innerHTML = `
       <div class="cyber-terminal-backdrop" id="cyberTerminalBackdrop"></div>
-      <div class="cyber-terminal-window" id="cyberTerminalWindow">
+      <div class="cyber-terminal-window" id="cyberTerminalWindow" data-lenis-prevent="true">
         <!-- Titlebar -->
         <div class="cyber-terminal-header">
           <div class="cyber-terminal-dots">
@@ -234,7 +235,7 @@ Tip: Try typing 'matrix' for cyber visualizer, or 'theme light' / 'theme dark' t
         </div>
 
         <!-- Terminal Output Scroll Area -->
-        <div class="cyber-terminal-body" id="cyberTerminalBody">
+        <div class="cyber-terminal-body" id="cyberTerminalBody" data-lenis-prevent="true" data-lenis-prevent-wheel="true" data-lenis-prevent-touch="true">
           <div class="cyber-term-banner">
             <pre class="cyber-ascii-art">
    __  ____  ___     ____  __  _____  ___  ___  ___  __
@@ -290,6 +291,15 @@ Tip: Try typing 'matrix' for cyber visualizer, or 'theme light' / 'theme dark' t
       if (terminalInput) terminalInput.focus();
     });
 
+    // Isolate terminal body scroll so it never triggers window scroll
+    terminalBody.addEventListener('wheel', (e) => {
+      e.stopPropagation();
+    }, { passive: true });
+
+    terminalBody.addEventListener('touchmove', (e) => {
+      e.stopPropagation();
+    }, { passive: true });
+
     terminalInput.addEventListener('keydown', handleInputKeydown);
 
     // Terminal Footer Clock
@@ -314,6 +324,10 @@ Tip: Try typing 'matrix' for cyber visualizer, or 'theme light' / 'theme dark' t
     if (!terminalModal) createTerminalDOM();
     terminalModal.classList.add('open');
     terminalModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('terminal-active');
+    if (window.lenis && typeof window.lenis.stop === 'function') {
+      window.lenis.stop();
+    }
     isOpen = true;
     updatePromptPath();
     setTimeout(() => {
@@ -328,6 +342,10 @@ Tip: Try typing 'matrix' for cyber visualizer, or 'theme light' / 'theme dark' t
     if (!terminalModal) return;
     terminalModal.classList.remove('open');
     terminalModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('terminal-active');
+    if (window.lenis && typeof window.lenis.start === 'function') {
+      window.lenis.start();
+    }
     isOpen = false;
   }
 
@@ -918,38 +936,13 @@ Tip: Try typing 'matrix' for cyber visualizer, or 'theme light' / 'theme dark' t
     }
   });
 
-  // Inject a Floating / Sticky Trigger Pill in Footer or Header for Discoverability
-  function injectTerminalTriggerButton() {
-    if (document.getElementById('terminalLauncherPill')) return;
-
-    const btn = document.createElement('button');
-    btn.id = 'terminalLauncherPill';
-    btn.className = 'terminal-launcher-pill';
-    btn.setAttribute('type', 'button');
-    btn.setAttribute('title', 'Open Hidden Terminal (Ctrl + Alt + T)');
-    btn.setAttribute('aria-label', 'Open Cyber Terminal');
-    btn.innerHTML = `
-      <span class="term-pill-icon" aria-hidden="true">&gt;_</span>
-      <span class="term-pill-text">Terminal</span>
-      <kbd class="term-pill-kbd">Ctrl+Alt+T</kbd>
-    `;
-
-    btn.addEventListener('click', () => {
-      toggleTerminal();
-    });
-
-    document.body.appendChild(btn);
-  }
-
   // Initialize on DOM Ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       createTerminalDOM();
-      injectTerminalTriggerButton();
     });
   } else {
     createTerminalDOM();
-    injectTerminalTriggerButton();
   }
 
   // Expose API for external buttons/links
