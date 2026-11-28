@@ -8,8 +8,10 @@
     // Dynamically calculate and set base href to ensure CSS, JS, icons, and links resolve
     // on root domain (cyber-jabez.github.io/404), subpaths (cyber-jabez.github.io/PORTFOLIO/...), and localhost
     (function () {
-      var isSubpath = window.location.pathname.startsWith('/PORTFOLIO');
-      document.write('<base href="' + (isSubpath ? '/PORTFOLIO/' : '/') + '">');
+      if (window.location.protocol !== 'file:') {
+        var isSubpath = window.location.pathname.startsWith('/PORTFOLIO');
+        document.write('<base href="' + (isSubpath ? '/PORTFOLIO/' : '/') + '">');
+      }
     })();
   </script>
   <title>404 // Node Not Found — Jabez Gabrielraj</title>

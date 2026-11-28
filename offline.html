@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // Dynamically calculate and set base href to ensure CSS, JS, icons, and links resolve
+    // on root domain (cyber-jabez.github.io/offline.html), subpaths (cyber-jabez.github.io/PORTFOLIO/...), and localhost
+    (function () {
+      if (window.location.protocol !== 'file:') {
+        var isSubpath = window.location.pathname.startsWith('/PORTFOLIO');
+        document.write('<base href="' + (isSubpath ? '/PORTFOLIO/' : '/') + '">');
+      }
+    })();
+  </script>
+  <title>Offline // Uplink Severed — Jabez Gabrielraj</title>
+  <meta name="description" content="Offline - Network Connection Severed. Air-gap mode active. Retry connection when internet returns.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Critical Inline Styles to Guarantee Immediate Visibility Even Without External CSS -->
+  <style>
+    body.error-page {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--bg, #08090C);
+      color: var(--ink, #F5F3EF);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .error-page main,
+    main.error-hero,
+    .error-hero {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: flex !important;
+    }
+  </style>
+
+  <!-- Favicons & Manifest -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=4.2">
+  <script>
+    (function () { try { var s = localStorage.getItem('portfolio-theme'); var t = s || 'dark'; document.documentElement.setAttribute('data-theme', t); document.documentElement.style.colorScheme = t; } catch (e) { } })();
+  </script>
+</head>
+
+<body class="error-page offline-page">
+
+  <!-- Header -->
+  <header>
+    <a href="index.html#hero" class="brand" data-label="Home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 512 512" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="512" height="512" rx="110" fill="#07070b" />
+          <rect width="504" height="504" x="4" y="4" rx="106" fill="none" stroke="#E8271A" stroke-width="8"
+            stroke-opacity="0.6" />
+          <path d="M 40 100 L 40 40 L 100 40" fill="none" stroke="#E8271A" stroke-width="14" stroke-linecap="round" />
+          <path d="M 472 100 L 472 40 L 412 40" fill="none" stroke="#E8271A" stroke-width="14" stroke-linecap="round" />
+          <path d="M 40 412 L 40 472 L 100 472" fill="none" stroke="#E8271A" stroke-width="14" stroke-linecap="round" />
+          <path d="M 472 412 L 472 472 L 412 472" fill="none" stroke="#E8271A" stroke-width="14"
+            stroke-linecap="round" />
+          <polygon points="256,76 414,168 414,348 256,440 98,348 98,168" fill="rgba(232, 39, 26, 0.08)" stroke="#E8271A"
+            stroke-width="8" />
+          <text x="256" y="295" font-family="'JetBrains Mono', monospace" font-size="140" font-weight="900"
+            text-anchor="middle" fill="#FFFFFF">JG<tspan fill="#E8271A">R</tspan></text>
+        </svg>
+      </span>
+      <span class="brand-text">JG<span>R</span></span>
+    </a>
+
+    <div class="header-right">
+      <div class="header-actions">
+        <div class="time-widget" title="Current Local Time in Coimbatore, India (IST · UTC+5:30)" aria-label="Current Indian Standard Time">
+          <span class="time-widget-pulse" aria-hidden="true"></span>
+          <span class="time-widget-label">IST</span>
+          <span class="time-widget-val live-clock" id="headerIstClock" data-format="raw">--:--:--</span>
+        </div>
+        <a href="index.html#hero" class="btn ghost error-back-btn">
+          <span>← Back to Portfolio</span>
+        </a>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle Light / Dark mode">
+          <span class="theme-toggle-icon sun-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path
+                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41">
+              </path>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon moon-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Offline Hero Content -->
+  <main class="error-hero offline-hero">
+    <div class="error-status-pill offline-status-pill" id="statusPill">
+      <span class="status-indicator offline-indicator" id="statusIndicator"></span>
+      <span id="statusText">AIR-GAP ACTIVE // TELEMETRY SEVERED</span>
+    </div>
+
+    <!-- Animated Radar & Broken Uplink Beacon -->
+    <div class="offline-icon-wrapper" aria-hidden="true">
+      <svg class="offline-radar-svg" viewBox="0 0 100 100" width="88" height="88" fill="none">
+        <circle class="radar-circle radar-c1" cx="50" cy="50" r="44" stroke="currentColor" stroke-dasharray="4 4" stroke-opacity="0.25" stroke-width="1.5" />
+        <circle class="radar-circle radar-c2" cx="50" cy="50" r="32" stroke="currentColor" stroke-dasharray="2 3" stroke-opacity="0.4" stroke-width="1.5" />
+        <circle class="radar-circle radar-c3" cx="50" cy="50" r="20" stroke="currentColor" stroke-opacity="0.6" stroke-width="2" />
+        <!-- Severed Uplink Diagonal Strike -->
+        <path d="M20 20 L80 80" stroke="#E8271A" stroke-width="3" stroke-linecap="round" />
+        <!-- Antenna / Signal Node -->
+        <path d="M34 68 L50 36 L66 68" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="50" cy="36" r="4.5" fill="#E8271A" />
+      </svg>
+    </div>
+
+    <div class="error-code-wrapper">
+      <h1 class="error-code-glitch offline-glitch" data-text="OFFLINE">OFFLINE</h1>
+    </div>
+
+    <h2 class="error-title" id="offlineTitle">Network Uplink Severed</h2>
+    <p class="error-desc" id="offlineDesc">
+      The internet connection was interrupted or is currently unavailable. The terminal is operating in client-side air-gap isolation. Reconnect your network or click retry below to re-establish the secure gateway.
+    </p>
+
+    <!-- Diagnostic Telemetry Card -->
+    <div class="error-terminal" aria-label="Offline Diagnostics">
+      <div class="error-terminal-header">
+        <div class="error-terminal-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="error-terminal-title">NETWORK SUBSYSTEM // AIR-GAP TELEMETRY</div>
+      </div>
+      <div class="error-terminal-body">
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">LINK_STATE:</span>
+          <span class="error-terminal-val scarlet" id="diagLinkState">SEVERED // NO_CARRIER</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">HOST_TARGET:</span>
+          <span class="error-terminal-val" id="diagHost">cyber-jabez.github.io</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">LAST_PROBE:</span>
+          <span class="error-terminal-val" id="diagProbeTime">--:--:--</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">PACKET_LOSS:</span>
+          <span class="error-terminal-val scarlet" id="diagPacketLoss">100% (TIMEOUT)</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">CACHE_MODE:</span>
+          <span class="error-terminal-val">CLIENT_CACHE // SERVICE_WORKER_ACTIVE</span>
+        </div>
+        <div class="error-terminal-row">
+          <span class="error-terminal-key">AUTO_HEAL:</span>
+          <span class="error-terminal-val" id="diagAutoHeal">LISTENING FOR ONLINE SIGNAL...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="error-actions offline-actions">
+      <button id="retryBtn" class="btn primary retry-btn" type="button" aria-label="Retry network connection">
+        <span class="retry-btn-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+          </svg>
+        </span>
+        <span id="retryBtnText">Retry Uplink Now</span>
+      </button>
+      <a href="index.html#hero" class="btn ghost">
+        <span>View Cached Portfolio</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <div class="error-hint" id="offlineHint">
+      Keyboard shortcuts: Press <kbd>R</kbd> to retry uplink • Press <kbd>ESC</kbd> or <kbd>H</kbd> to return home
+    </div>
+  </main>
+
+  <!-- Error Page Footer -->
+  <footer class="error-footer">
+    <div>
+      <span>JABEZ GABRIELRAJ E</span>
+      <span style="opacity: 0.4; margin: 0 8px;">•</span>
+      <span>© 2026 ALL RIGHTS RESERVED</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="width: 6px; height: 6px; border-radius: 50%; background: #FF5F56; display: inline-block;" id="footerBeacon"></span>
+      <span id="footerStatusText">AIR-GAP ISOLATION // ZERO-TRUST DEFENSE</span>
+    </div>
+  </footer>
+
+  <script src="theme.js"></script>
+  <script>
+    (function () {
+      const hostEl = document.getElementById('diagHost');
+      const probeEl = document.getElementById('diagProbeTime');
+      const statusPill = document.getElementById('statusPill');
+      const statusIndicator = document.getElementById('statusIndicator');
+      const statusText = document.getElementById('statusText');
+      const diagLinkState = document.getElementById('diagLinkState');
+      const diagPacketLoss = document.getElementById('diagPacketLoss');
+      const diagAutoHeal = document.getElementById('diagAutoHeal');
+      const offlineTitle = document.getElementById('offlineTitle');
+      const offlineDesc = document.getElementById('offlineDesc');
+      const retryBtn = document.getElementById('retryBtn');
+      const retryBtnText = document.getElementById('retryBtnText');
+      const footerBeacon = document.getElementById('footerBeacon');
+      const footerStatusText = document.getElementById('footerStatusText');
+      const istEl = document.getElementById('headerIstClock');
+
+      if (hostEl) {
+        hostEl.textContent = window.location.hostname || 'cyber-jabez.github.io';
+      }
+
+      // Live IST Clock
+      if (istEl) {
+        const fmt = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Asia/Kolkata',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        });
+        const updateClock = function () {
+          const nowStr = fmt.format(new Date());
+          istEl.textContent = nowStr;
+          if (probeEl && probeEl.textContent === '--:--:--') {
+            probeEl.textContent = nowStr + ' IST';
+          }
+        };
+        updateClock();
+        setInterval(updateClock, 1000);
+      }
+
+      let isProbing = false;
+
+      function updateProbeTimestamp() {
+        if (!probeEl) return;
+        const now = new Date();
+        const timeStr = now.toTimeString().split(' ')[0] + ' IST';
+        probeEl.textContent = timeStr;
+      }
+
+      function handleOnlineSuccess() {
+        if (statusPill) statusPill.classList.add('online');
+        if (statusIndicator) statusIndicator.classList.add('online');
+        if (statusText) statusText.textContent = 'UPLINK RESTORED // RECONNECTING...';
+        if (diagLinkState) {
+          diagLinkState.className = 'error-terminal-val';
+          diagLinkState.style.color = '#27C93F';
+          diagLinkState.textContent = 'RESTORED // LOW_LATENCY (ONLINE)';
+        }
+        if (diagPacketLoss) {
+          diagPacketLoss.className = 'error-terminal-val';
+          diagPacketLoss.style.color = '#27C93F';
+          diagPacketLoss.textContent = '0% (STABLE UPLINK)';
+        }
+        if (diagAutoHeal) diagAutoHeal.textContent = 'SYNCHRONIZING WITH SERVER...';
+        if (offlineTitle) offlineTitle.textContent = 'Network Uplink Re-Established';
+        if (offlineDesc) offlineDesc.textContent = 'Internet connection verified! Restoring active security session...';
+        if (retryBtn) {
+          retryBtn.classList.remove('probing', 'failed');
+          retryBtn.classList.add('connected');
+        }
+        if (retryBtnText) retryBtnText.textContent = 'Uplink Established! Loading...';
+        if (footerBeacon) footerBeacon.style.background = '#27C93F';
+        if (footerStatusText) footerStatusText.textContent = 'SYSTEM OPERATIONAL // BLUE TEAM DEFENSE';
+
+        setTimeout(() => {
+          let destination = 'index.html#hero';
+          try {
+            if (document.referrer && !document.referrer.includes('offline.html')) {
+              destination = document.referrer;
+            }
+          } catch (e) {}
+          window.location.replace(destination);
+        }, 1200);
+      }
+
+      function handleProbeFail() {
+        updateProbeTimestamp();
+        if (retryBtn) {
+          retryBtn.classList.remove('probing');
+          retryBtn.classList.add('failed');
+          setTimeout(() => retryBtn.classList.remove('failed'), 600);
+        }
+        if (retryBtnText) retryBtnText.textContent = 'Still Offline — Click to Retry';
+        if (diagPacketLoss) diagPacketLoss.textContent = '100% (PROBE FAILED)';
+        if (diagLinkState) diagLinkState.textContent = 'SEVERED // CONNECTION REFUSED';
+        setTimeout(() => {
+          if (!navigator.onLine && retryBtnText) {
+            retryBtnText.textContent = 'Retry Uplink Now';
+          }
+        }, 2200);
+      }
+
+      async function probeConnection() {
+        if (isProbing) return;
+        isProbing = true;
+
+        if (retryBtn) retryBtn.classList.add('probing');
+        if (retryBtnText) retryBtnText.textContent = 'Probing Gateway...';
+        if (diagAutoHeal) diagAutoHeal.textContent = 'SENDING ACTIVE ICMP/HTTP PING...';
+
+        updateProbeTimestamp();
+
+        if (!navigator.onLine) {
+          setTimeout(() => {
+            isProbing = false;
+            handleProbeFail();
+          }, 600);
+          return;
+        }
+
+        try {
+          if (window.location.protocol.startsWith('http')) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 3500);
+
+            // Ping cache-busted probe
+            await fetch('favicon.ico?probe=' + Date.now(), {
+              method: 'HEAD',
+              cache: 'no-store',
+              signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+          } else {
+            // On file:// protocol, brief simulation delay
+            await new Promise((r) => setTimeout(r, 450));
+          }
+
+          if (navigator.onLine) {
+            isProbing = false;
+            handleOnlineSuccess();
+          } else {
+            isProbing = false;
+            handleProbeFail();
+          }
+        } catch (err) {
+          if (navigator.onLine) {
+            isProbing = false;
+            handleOnlineSuccess();
+          } else {
+            isProbing = false;
+            handleProbeFail();
+          }
+        }
+      }
+
+      if (retryBtn) {
+        retryBtn.addEventListener('click', probeConnection);
+      }
+
+      // Automatic event listeners when browser detects online/offline status changes
+      window.addEventListener('online', function () {
+        probeConnection();
+      });
+
+      window.addEventListener('offline', function () {
+        if (statusPill) statusPill.classList.remove('online');
+        if (statusIndicator) statusIndicator.classList.remove('online');
+        if (statusText) statusText.textContent = 'AIR-GAP ACTIVE // TELEMETRY SEVERED';
+        if (retryBtn) retryBtn.classList.remove('connected');
+        if (retryBtnText) retryBtnText.textContent = 'Retry Uplink Now';
+        updateProbeTimestamp();
+      });
+
+      // Keyboard shortcuts
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'r' || e.key === 'R') {
+          if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            probeConnection();
+          }
+        }
+        if (e.key === 'Escape' || e.key === 'h' || e.key === 'H') {
+          window.location.href = 'index.html#hero';
+        }
+      });
+
+      // Initial diagnostic timestamp
+      updateProbeTimestamp();
+    })();
+  </script>
+</body>
+
+</html>

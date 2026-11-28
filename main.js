@@ -1209,8 +1209,118 @@ function initPreloader(onComplete) {
   setTimeout(dismiss, 1600);
 }
 
+/* ============ Service Worker Registration (Offline Resilience) ============ */
+function initServiceWorker() {
+  if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', () => {
+      const isSubpath = window.location.pathname.startsWith('/PORTFOLIO');
+      const swUrl = isSubpath ? '/PORTFOLIO/sw.js' : './sw.js';
+      navigator.serviceWorker.register(swUrl).then((reg) => {
+        console.log('[SW] Service worker registered successfully:', reg.scope);
+      }).catch((err) => {
+        console.warn('[SW] Service worker registration failed:', err);
+      });
+    });
+  }
+}
+
+/* ============ Live Network Resilience HUD ============ */
+function initNetworkStatusMonitor() {
+  let hud = document.getElementById('networkHud');
+  if (!hud) {
+    hud = document.createElement('div');
+    hud.id = 'networkHud';
+    hud.className = 'network-hud';
+    hud.setAttribute('role', 'status');
+    hud.setAttribute('aria-live', 'polite');
+    hud.innerHTML = `
+      <span class="network-hud-dot" aria-hidden="true"></span>
+      <span class="network-hud-text" id="networkHudText">AIR-GAP ACTIVE // Connection Severed</span>
+      <button class="network-hud-retry" id="networkHudRetry" type="button">Retry</button>
+    `;
+    document.body.appendChild(hud);
+  }
+
+  const hudText = document.getElementById('networkHudText');
+  const hudRetry = document.getElementById('networkHudRetry');
+  let hideTimeout = null;
+
+  function showOffline() {
+    clearTimeout(hideTimeout);
+    hud.classList.remove('online');
+    hud.classList.add('visible');
+    if (hudText) hudText.textContent = 'AIR-GAP ACTIVE // Offline Mode';
+    if (hudRetry) {
+      hudRetry.textContent = 'Retry Uplink';
+      hudRetry.style.display = 'inline-block';
+      hudRetry.disabled = false;
+    }
+  }
+
+  function showOnline() {
+    clearTimeout(hideTimeout);
+    hud.classList.add('online', 'visible');
+    if (hudText) hudText.textContent = 'UPLINK RESTORED // System Reconnected';
+    if (hudRetry) hudRetry.style.display = 'none';
+
+    hideTimeout = setTimeout(() => {
+      hud.classList.remove('visible');
+    }, 3800);
+  }
+
+  async function retryPing() {
+    if (hudRetry) {
+      hudRetry.textContent = 'Probing...';
+      hudRetry.disabled = true;
+    }
+
+    try {
+      if (window.location.protocol.startsWith('http')) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        await fetch('favicon.ico?probe=' + Date.now(), { method: 'HEAD', cache: 'no-store', signal: controller.signal });
+        clearTimeout(timeoutId);
+      } else {
+        await new Promise((r) => setTimeout(r, 350));
+      }
+      if (navigator.onLine) {
+        showOnline();
+      } else {
+        throw new Error('Offline');
+      }
+    } catch (e) {
+      if (navigator.onLine) {
+        showOnline();
+      } else {
+        if (hudRetry) {
+          hudRetry.textContent = 'Still Offline';
+          setTimeout(() => {
+            if (hudRetry) {
+              hudRetry.textContent = 'Retry Uplink';
+              hudRetry.disabled = false;
+            }
+          }, 1500);
+        }
+      }
+    }
+  }
+
+  if (hudRetry) {
+    hudRetry.addEventListener('click', retryPing);
+  }
+
+  window.addEventListener('offline', showOffline);
+  window.addEventListener('online', showOnline);
+
+  if (!navigator.onLine) {
+    showOffline();
+  }
+}
+
 /* ============ Main Boot Sequence ============ */
 function boot() {
+  initServiceWorker();
+  initNetworkStatusMonitor();
   initDynamicGreeting();
   initLiveIstClock();
   const main = document.querySelector('main');
