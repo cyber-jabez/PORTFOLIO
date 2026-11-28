@@ -3398,6 +3398,16 @@ body.loading-lock {
   border-color: #27C93F !important;
   color: #07070b !important;
   box-shadow: 0 0 24px rgba(39, 201, 63, 0.4) !important;
+  cursor: pointer !important;
+}
+
+.retry-btn.connected:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(39, 201, 63, 0.6) !important;
+}
+
+.retry-btn.connected:active {
+  transform: translateY(0);
 }
 
 .retry-btn.connected::before {

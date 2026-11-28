@@ -63,7 +63,7 @@
 
   <!-- Header -->
   <header>
-    <a href="index.html#hero" class="brand" data-label="Home">
+    <a href="index.html#hero" class="brand" data-label="Home" id="headerBrandLogo">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 512 512" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="512" height="512" rx="110" fill="#07070b" />
@@ -90,7 +90,7 @@
           <span class="time-widget-label">IST</span>
           <span class="time-widget-val live-clock" id="headerIstClock" data-format="raw">--:--:--</span>
         </div>
-        <a href="index.html#hero" class="btn ghost error-back-btn">
+        <a href="index.html#hero" class="btn ghost error-back-btn" id="headerBackBtn">
           <span>← Back to Portfolio</span>
         </a>
         <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle Light / Dark mode">
@@ -190,7 +190,7 @@
         </span>
         <span id="retryBtnText">Retry Uplink Now</span>
       </button>
-      <a href="index.html#hero" class="btn ghost">
+      <a href="index.html#hero" class="btn ghost" id="cachedHomeBtn">
         <span>View Cached Portfolio</span>
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -261,6 +261,8 @@
       }
 
       let isProbing = false;
+      let isOnlineRestored = false;
+      let redirectTimeout = null;
 
       function updateProbeTimestamp() {
         if (!probeEl) return;
@@ -269,7 +271,52 @@
         probeEl.textContent = timeStr;
       }
 
+      function navigateToHero() {
+        if (redirectTimeout) {
+          clearTimeout(redirectTimeout);
+          redirectTimeout = null;
+        }
+
+        if (retryBtnText) retryBtnText.textContent = 'Redirecting to Terminal...';
+        if (retryBtn) {
+          retryBtn.classList.remove('probing', 'failed');
+          retryBtn.classList.add('connected');
+        }
+
+        // Determine destination URL
+        const origin = window.location.origin;
+        const pathname = window.location.pathname;
+
+        let basePath = './index.html';
+        if (pathname.includes('/PORTFOLIO/')) {
+          basePath = '/PORTFOLIO/index.html';
+        } else if (pathname.endsWith('/offline.html')) {
+          basePath = pathname.replace(/offline\.html$/, 'index.html');
+        } else if (pathname === '/' || pathname.endsWith('/')) {
+          basePath = pathname + 'index.html';
+        }
+
+        const targetUrl = new URL(basePath, origin);
+        targetUrl.hash = 'hero';
+
+        // When offline page was served by Service Worker for navigation requests,
+        // window.location.pathname may ALREADY be on / or /index.html.
+        // A simple href/hash update won't trigger a network navigation. We MUST force reload!
+        const isCurrentSameAsTarget = (pathname === targetUrl.pathname) ||
+          (pathname.endsWith('/') && targetUrl.pathname.endsWith('/index.html'));
+
+        if (isCurrentSameAsTarget) {
+          window.location.hash = 'hero';
+          window.location.reload();
+        } else {
+          window.location.href = targetUrl.href;
+        }
+      }
+
       function handleOnlineSuccess() {
+        isOnlineRestored = true;
+        isProbing = false;
+
         if (statusPill) statusPill.classList.add('online');
         if (statusIndicator) statusIndicator.classList.add('online');
         if (statusText) statusText.textContent = 'UPLINK RESTORED // RECONNECTING...';
@@ -290,22 +337,16 @@
           retryBtn.classList.remove('probing', 'failed');
           retryBtn.classList.add('connected');
         }
-        if (retryBtnText) retryBtnText.textContent = 'Uplink Established! Loading...';
+        if (retryBtnText) retryBtnText.textContent = 'Uplink Established! Returning to Hero...';
         if (footerBeacon) footerBeacon.style.background = '#27C93F';
         if (footerStatusText) footerStatusText.textContent = 'SYSTEM OPERATIONAL // BLUE TEAM DEFENSE';
 
-        setTimeout(() => {
-          let destination = 'index.html#hero';
-          try {
-            if (document.referrer && !document.referrer.includes('offline.html')) {
-              destination = document.referrer;
-            }
-          } catch (e) {}
-          window.location.replace(destination);
-        }, 1200);
+        // Auto-redirect to hero after brief visual feedback
+        redirectTimeout = setTimeout(navigateToHero, 800);
       }
 
       function handleProbeFail() {
+        isOnlineRestored = false;
         updateProbeTimestamp();
         if (retryBtn) {
           retryBtn.classList.remove('probing');
@@ -376,7 +417,39 @@
       }
 
       if (retryBtn) {
-        retryBtn.addEventListener('click', probeConnection);
+        retryBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          // If internet was already restored, clicking immediately takes them back!
+          if (isOnlineRestored || retryBtn.classList.contains('connected')) {
+            navigateToHero();
+          } else {
+            probeConnection();
+          }
+        });
+      }
+
+      const cachedHomeBtn = document.getElementById('cachedHomeBtn');
+      if (cachedHomeBtn) {
+        cachedHomeBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          navigateToHero();
+        });
+      }
+
+      const headerBrandLogo = document.getElementById('headerBrandLogo');
+      if (headerBrandLogo) {
+        headerBrandLogo.addEventListener('click', function (e) {
+          e.preventDefault();
+          navigateToHero();
+        });
+      }
+
+      const headerBackBtn = document.getElementById('headerBackBtn');
+      if (headerBackBtn) {
+        headerBackBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          navigateToHero();
+        });
       }
 
       // Automatic event listeners when browser detects online/offline status changes
@@ -385,6 +458,11 @@
       });
 
       window.addEventListener('offline', function () {
+        isOnlineRestored = false;
+        if (redirectTimeout) {
+          clearTimeout(redirectTimeout);
+          redirectTimeout = null;
+        }
         if (statusPill) statusPill.classList.remove('online');
         if (statusIndicator) statusIndicator.classList.remove('online');
         if (statusText) statusText.textContent = 'AIR-GAP ACTIVE // TELEMETRY SEVERED';
@@ -398,11 +476,15 @@
         if (e.key === 'r' || e.key === 'R') {
           if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
             e.preventDefault();
-            probeConnection();
+            if (isOnlineRestored || (retryBtn && retryBtn.classList.contains('connected'))) {
+              navigateToHero();
+            } else {
+              probeConnection();
+            }
           }
         }
         if (e.key === 'Escape' || e.key === 'h' || e.key === 'H') {
-          window.location.href = 'index.html#hero';
+          navigateToHero();
         }
       });
 
